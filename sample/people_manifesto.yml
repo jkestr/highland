@@ -1,0 +1,9 @@
+# you are watching manifesto file for people table
+table: people
+id: key
+name: string
+job: string
+age: integer
+born: date
+
+

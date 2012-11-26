@@ -1,1 +1,1 @@
-require 'highland/try'
+require 'highland/core'

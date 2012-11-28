@@ -6,10 +6,10 @@ describe Highland do
   end
   
   before(:each) do
-  	@dummy_shash = File.join(File.dirname(__FILE__), "/dummy_dir/dummy.hl" )
-  	@dummy_shash_victim = File.join(File.dirname(__FILE__), "/dummy_dir/dummy_victim.hl" )
-  	@dummy_shash_empty = File.join(File.dirname(__FILE__), "/dummy_dir/empty.hl" )
-  	@dummy_shash_empty_victim = File.join(File.dirname(__FILE__), "/dummy_dir/empty_victim.hl" )
+  	@dummy_shash = File.join(File.dirname(__FILE__), "/dummy_dir/db/dummy.hl" )
+  	@dummy_shash_victim = File.join(File.dirname(__FILE__), "/dummy_dir/db/dummy_victim.hl" )
+  	@dummy_shash_empty = File.join(File.dirname(__FILE__), "/dummy_dir/db/empty.hl" )
+  	@dummy_shash_empty_victim = File.join(File.dirname(__FILE__), "/dummy_dir/db/empty_victim.hl" )
     @dummy_class = DummyClass.new
     @dummy_class.extend(Highland::DatabaseMethods)
 

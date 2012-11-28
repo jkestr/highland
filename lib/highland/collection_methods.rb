@@ -1,6 +1,7 @@
 module Highland
   module CollectionMethods
-
+    def initialize
+    end
   	# Users.create(:age => 26, :name => 'Chris')
     def create(*params)
       "called create"

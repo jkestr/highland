@@ -9,7 +9,7 @@ end
 desc "commit and push"
 task :cp do
   system "git add ."
-  verbs = ["fucks","eats","looks at","kills","inspirates","beats","wins","runs away from","loves","kicks","attacks", "dreams about","supports","deffends","impressed","excited","became popular among","danced with","chilled out","slept with"]
+  verbs = ["fucks","eats","looks at","kills","inspirates","beats","wins","runs away from","loves","kicks","attacks", "dreams about","supports","deffends","impressed","excited","became popular among","danced with","chilled out with","slept with", "drank with"]
   nouns = ["pigs","cows","rabbits","elephants","chocolate bars","dogs","cats","busty bitches","democrats","liberals","iPhones","MacBooks","bums"]
   quantity = Random.rand(2...100500)
   vi = Random.rand(0...(verbs.length - 1))

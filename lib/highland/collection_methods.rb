@@ -30,6 +30,7 @@ module Highland
       object_instances, i = [], 0
       find_db(*params).each_key do |id|        
         object_instances[i] = object.new
+        object_instances[i].class.send(:define_method, :id) { id }
         params[0].each_key do |key|
           method = key
           value = params[0][key]          

@@ -150,6 +150,31 @@ describe Highland do
     File.delete(@dummy_shash_victim)
   end
 
+  it "should delete element from virtual collections by id" do
+    @dummy_class.load_vhash(@dummy_shash)
+    @dummy_class.load_vhelper
+    @dummy_class.instance_variable_get("@vhash")[1]["name"]["value"].should == "John"
+    @dummy_class.instance_variable_get("@vhelper")["name"]["John"].include?(1).should == true
+    @dummy_class.delete(1)
+    @dummy_class.find(1).class.should == {}
+  end
 
+  it "should delete element from virtual collections by one parameter" do
+    @dummy_class.load_vhash(@dummy_shash)
+    @dummy_class.load_vhelper
+    @dummy_class.instance_variable_get("@vhash")[1]["name"]["value"].should == "John"
+    @dummy_class.instance_variable_get("@vhelper")["name"]["John"].include?(1).should == true
+    @dummy_class.delete(:name => "John")
+    @dummy_class.find(:name => "John").should == {}
+  end
+
+  it "should delete element from virtual collections by several parameters" do
+    @dummy_class.load_vhash(@dummy_shash)
+    @dummy_class.load_vhelper
+    @dummy_class.instance_variable_get("@vhash")[1]["name"]["value"].should == "John"
+    @dummy_class.instance_variable_get("@vhelper")["name"]["John"].include?(1).should == true
+    @dummy_class.delete(:name => "John", :age => 20)
+    @dummy_class.find(:name => "John", :age => 20).should == {}
+  end
 
 end

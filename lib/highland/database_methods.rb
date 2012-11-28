@@ -1,4 +1,5 @@
 require 'rio'
+require File.join(File.dirname(__FILE__), "core_extensions" )
 
 module Highland
   module DatabaseMethods
@@ -51,8 +52,8 @@ module Highland
     def find(*query)
       if query[0].class == Fixnum
         id = query[0]
-        output ={}
-        output[id] = @vhash[id]
+        output = {}
+        output[id] = @vhash[id] if @vhash[id] != nil
         return output
       end
       if query[0].class == Hash
@@ -62,8 +63,12 @@ module Highland
           ids << @vhelper[column.to_s][q[column]]
         end
         res = ids.inject(ids.first){ |sim,cur| sim & cur }
+        return {} if res.class != Array or res == []
         output = {}
-        res.each {|id| output[id] = @vhash[id]}
+        res.each do |id|
+          next if @vhash[id] == nil
+          output[id] = @vhash[id]
+        end
         return output
       end
     end
@@ -85,6 +90,13 @@ module Highland
 
     def clear_static
       File.truncate(@file, 0)
+    end
+
+    def delete(*query)
+      find(*query).each_key do |id|
+        @vhash.remove!(id)
+      end
+      load_vhelper
     end
 
   end

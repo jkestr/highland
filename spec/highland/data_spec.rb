@@ -156,7 +156,7 @@ describe Highland do
     @dummy_class.instance_variable_get("@vhash")[1]["name"]["value"].should == "John"
     @dummy_class.instance_variable_get("@vhelper")["name"]["John"].include?(1).should == true
     @dummy_class.delete(1)
-    @dummy_class.find(1).class.should == {}
+    @dummy_class.find(1).should == {}
   end
 
   it "should delete element from virtual collections by one parameter" do

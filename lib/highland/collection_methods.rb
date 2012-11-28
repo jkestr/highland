@@ -1,8 +1,10 @@
 module Highland
   module CollectionMethods
-    # def init(collection)      
-    #   DIR
-    # end
+    
+    def init_collection(collection)
+      init_file(collection)
+    end
+
   	# Users.create(:age => 26, :name => 'Chris')
     def create(*params)
       "called create"

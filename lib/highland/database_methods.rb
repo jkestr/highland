@@ -54,7 +54,7 @@ module Highland
       update_columns
     end
 
-    def find(*query)
+    def find_db(*query)
       if query[0].class == Fixnum
         id = query[0]
         output = {}
@@ -95,7 +95,7 @@ module Highland
     end
 
     def delete(*query)
-      find(*query).each_key do |id|
+      find_db(*query).each_key do |id|
         @vhash.remove!(id)
       end
       load_vhelper

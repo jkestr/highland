@@ -18,4 +18,5 @@ collections = ["DummyUsers"]
 collections.each do |collection|
   new_collection = Object.const_set(collection, Class.new)
   new_collection.extend Highland::CollectionMethods
+  new_collection.extend Highland::DatabaseMethods
 end

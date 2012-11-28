@@ -94,20 +94,20 @@ describe Highland do
     @dummy_class.instance_variable_get("@columns").sort.should == ["name","age"].sort
   end
 
-  it "should find element by key" do
+  it "should find_db element by key" do
   	@dummy_class.load_vhash(@dummy_shash)
     @dummy_class.load_vhelper
-    @dummy_class.find(5).class.should == Hash
-    @dummy_class.find(:name => "Merry").class.should == Hash
-    @dummy_class.find(:name => "Merry", :age => 18).class.should == Hash
-    @dummy_class.find(:age => 21).class.should == Hash
-    @dummy_class.find(5)[5]["name"]["value"].should == "Merry"
-    @dummy_class.find(:name => "Merry")[5]["age"]["value"].should == 18
-    @dummy_class.find(:name => "Merry", :age => 18)[5]["name"]["type"].should == "string"
-    @dummy_class.find(:age => 21).keys.sort.should == [3,2].sort
-    @dummy_class.find(:age => 21)[3]["name"]["value"].should == "Rebecca"
-    @dummy_class.find(:age => 21)[3]["age"]["value"].should == 21
-    @dummy_class.find(:age => 21)[2]["name"]["type"].should == "string"
+    @dummy_class.find_db(5).class.should == Hash
+    @dummy_class.find_db(:name => "Merry").class.should == Hash
+    @dummy_class.find_db(:name => "Merry", :age => 18).class.should == Hash
+    @dummy_class.find_db(:age => 21).class.should == Hash
+    @dummy_class.find_db(5)[5]["name"]["value"].should == "Merry"
+    @dummy_class.find_db(:name => "Merry")[5]["age"]["value"].should == 18
+    @dummy_class.find_db(:name => "Merry", :age => 18)[5]["name"]["type"].should == "string"
+    @dummy_class.find_db(:age => 21).keys.sort.should == [3,2].sort
+    @dummy_class.find_db(:age => 21)[3]["name"]["value"].should == "Rebecca"
+    @dummy_class.find_db(:age => 21)[3]["age"]["value"].should == 21
+    @dummy_class.find_db(:age => 21)[2]["name"]["type"].should == "string"
   end
 
   it "should insert new element into existing static hash" do
@@ -166,7 +166,7 @@ describe Highland do
     @dummy_class.instance_variable_get("@vhelper")["name"]["John"].include?(1).should == true
     @dummy_class.instance_variable_get("@vhash").keys.sort.should == [1,2,3,5]
     @dummy_class.delete(1)
-    @dummy_class.find(1).should == {}
+    @dummy_class.find_db(1).should == {}
     @dummy_class.load_vhash(@dummy_shash_victim)
     @dummy_class.load_vhelper
     @dummy_class.instance_variable_get("@vhash").keys.sort.should == [2,3,5]
@@ -181,7 +181,7 @@ describe Highland do
     @dummy_class.instance_variable_get("@vhelper")["name"]["John"].include?(1).should == true
     @dummy_class.instance_variable_get("@vhash").keys.sort.should == [1,2,3,5]
     @dummy_class.delete(:name => "John")
-    @dummy_class.find(:name => "John").should == {}
+    @dummy_class.find_db(:name => "John").should == {}
     @dummy_class.load_vhash(@dummy_shash_victim)
     @dummy_class.load_vhelper
     @dummy_class.instance_variable_get("@vhash").keys.sort.should == [2,3,5]
@@ -196,7 +196,7 @@ describe Highland do
     @dummy_class.instance_variable_get("@vhelper")["name"]["John"].include?(1).should == true
     @dummy_class.instance_variable_get("@vhash").keys.sort.should == [1,2,3,5]
     @dummy_class.delete(:name => "John", :age => 20)
-    @dummy_class.find(:name => "John", :age => 20).should == {}
+    @dummy_class.find_db(:name => "John", :age => 20).should == {}
     @dummy_class.load_vhash(@dummy_shash_victim)
     @dummy_class.load_vhelper
     @dummy_class.instance_variable_get("@vhash").keys.sort.should == [2,3,5]

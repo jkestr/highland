@@ -1,59 +1,18 @@
 require File.join(File.dirname(__FILE__), "/../spec_helper" )
-
+require 'rio'
 describe Highland do
 
   class DummyClass
   end
   
   before(:each) do
+  	@dummy_shash = File.join(File.dirname(__FILE__), "/dummy_dir/dummy.hl" )
+  	@dummy_shash_victim = File.join(File.dirname(__FILE__), "/dummy_dir/dummy_victim.hl" )
+  	@dummy_shash_empty = File.join(File.dirname(__FILE__), "/dummy_dir/empty.hl" )
+  	@dummy_shash_empty_victim = File.join(File.dirname(__FILE__), "/dummy_dir/empty_victim.hl" )
     @dummy_class = DummyClass.new
     @dummy_class.extend(Highland::DatabaseMethods)
-    @dummy_shash = %q{ {  
-                         1 => {
-                           "name" => {
-                             "type" => "string",
-                             "value" => "John"
-                           },
-                           "age" => {
-                             "type" => "integer",
-                             "value" => 20
-                           }
-                         },
 
-                         5 => {
-                           "name" => {
-                             "type" => "string",
-                             "value" => "Merry"
-                           },
-                           "age" => {
-                             "type" => "integer",
-                             "value" => 18
-                           }
-                         },           
-
-                         3 => {
-                           "name" => {
-                             "type" => "string",
-                             "value" => "Rebecca"
-                           },
-                           "age" => {
-                             "type" => "integer",
-                             "value" => 21
-                           }
-                         },
-
-                         2 => {
-                           "name" => {
-                             "type" => "string",
-                             "value" => "Bill"
-                           },
-                           "age" => {
-                             "type" => "integer",
-                             "value" => 21
-                           }
-                         }
-                      }}
-    @dummy_vhash = eval(@dummy_shash)
     @dummy_vhelper = {  
                          "name" => {
                            "John" => [1],
@@ -85,7 +44,6 @@ describe Highland do
   it "should load virtual hash" do
   	@dummy_class.instance_variables.include?("@vhash").should == false
     @dummy_class.load_vhash(@dummy_shash)
-    @dummy_class.instance_variables.include?("@vhash").should == true
     @dummy_class.instance_variable_get("@vhash").class.should == Hash
     @dummy_class.instance_variable_get("@vhash").keys.sort.should == [1,2,3,5]
   end
@@ -94,7 +52,6 @@ describe Highland do
   	@dummy_class.load_vhash(@dummy_shash)
   	@dummy_class.instance_variables.include?("@vhelper").should == false
     @dummy_class.load_vhelper
-    @dummy_class.instance_variables.include?("@vhelper").should == true
     @dummy_class.instance_variable_get("@vhelper").class.should == Hash
     @dummy_class.instance_variable_get("@vhelper").keys.sort.should == ["name", "age"].sort
     @dummy_class.instance_variable_get("@vhelper")["name"].keys.sort.should == ["John","Merry","Rebecca","Bill"].sort
@@ -146,7 +103,28 @@ describe Highland do
   end
 
   it "should insert new element into static hash" do
-    @dummy_class.insert_shash(@dummy_element).should == "inserted element into static hash"
+    rio(@dummy_shash) > rio(@dummy_shash_victim)
+    @dummy_class.load_vhash(@dummy_shash_victim)
+    @dummy_class.load_vhelper
+    @dummy_class.instance_variable_get("@vhash").keys.sort.should == [1,2,3,5]
+    @dummy_class.insert_shash(@dummy_element)
+    @dummy_class.load_vhash(@dummy_shash_victim)
+    @dummy_class.load_vhelper
+    @dummy_class.instance_variable_get("@vhash").keys.sort.should == [1,2,3,5,100500]
+    @dummy_class.instance_variable_get("@vhash")[100500].class.should == Hash
+    @dummy_class.instance_variable_get("@vhash")[100500].keys.sort.should == ["name","age"].sort
+    File.delete(@dummy_shash_victim)
+    rio(@dummy_shash_empty) > rio(@dummy_shash_empty_victim)
+    @dummy_class.load_vhash(@dummy_shash_empty_victim)
+    @dummy_class.load_vhelper
+    @dummy_class.instance_variable_get("@vhash").keys.sort.should == []
+    @dummy_class.insert_shash(@dummy_element)
+    @dummy_class.load_vhash(@dummy_shash_empty_victim)
+    @dummy_class.load_vhelper
+    @dummy_class.instance_variable_get("@vhash").keys.sort.should == [100500]
+    @dummy_class.instance_variable_get("@vhash")[100500].class.should == Hash
+    @dummy_class.instance_variable_get("@vhash")[100500].keys.sort.should == ["name","age"].sort
+    File.delete(@dummy_shash_empty_victim)
   end
 
   it "should clear collection" do

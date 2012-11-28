@@ -1,7 +1,16 @@
+require 'rio'
+
 module Highland
   module DatabaseMethods
+  	
+  	def init_file(shash)
+  	  @file = shash
+  	end
+
     def load_vhash(shash)
-      @vhash = eval(shash)
+      init_file(shash)
+      data = "{#{rio(@file).contents}}"
+      @vhash = eval(data)
     end
 
     def update_columns
@@ -60,7 +69,14 @@ module Highland
     end
 
     def insert_shash(element)
-      "inserted element into static hash"
+      empty = true if rio(@file)[0...10] == []
+      empty = false if rio(@file)[0...10] != []
+      File.open(@file, 'a') do |file|
+        element.each_key do |id|
+          file.puts ", #{id} => #{element[id]}" if empty == false
+          file.puts "#{id} => #{element[id]}" if empty == true
+        end        
+      end
     end
 
     def clear

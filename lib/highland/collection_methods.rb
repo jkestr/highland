@@ -44,7 +44,7 @@ module Highland
 
     # Users.first(:name => 'John')
     def first(*params)
-      "called first"
+      where(*params).first
     end
 
     # Users.all(:name => 'John')

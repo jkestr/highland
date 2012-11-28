@@ -35,6 +35,7 @@ describe Highland do
       i += 1
     end
     DummyUsers.clear_static
+    DummyUsers.clear_virtual
   end
 
   it "should provide querying with where" do
@@ -42,7 +43,7 @@ describe Highland do
     DummyUsers.clear_static
     i = 20
     5.times do
-      a = DummyUsers.create(:age => i, :name => "Fake").values
+      DummyUsers.create(:age => i, :name => "Fake")
       i += 1
     end
     DummyUsers.where(:name => 'Fake').class.should == Array
@@ -53,10 +54,19 @@ describe Highland do
     DummyUsers.where(:name => 'Fake').first.name.should == 'Fake'
     DummyUsers.where(:name => 'Fake', :age => 20).first.age.should == 20
     DummyUsers.clear_static
+    DummyUsers.clear_virtual
   end
 
   it "should provide querying with first" do
-    DummyUsers.first(:name => 'John').should == "called first"
+    DummyUsers.init_collection(@collection)
+    DummyUsers.clear_static
+    DummyUsers.create(:age => 20, :name => "Fake")
+    DummyUsers.first(:name => 'Fake').class.should == HighlandObject
+    DummyUsers.first(:name => 'Fake', :age => 20).class.should == HighlandObject
+    DummyUsers.first(:name => 'Fake').name.should == 'Fake'
+    DummyUsers.first(:name => 'Fake', :age => 20).age.should == 20
+    DummyUsers.clear_static
+    DummyUsers.clear_virtual
   end
 
   it "should provide querying with all" do

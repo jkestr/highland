@@ -1,0 +1,3 @@
+DummyUsers: 
+  name: string
+  age: integer

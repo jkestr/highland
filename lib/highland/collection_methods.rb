@@ -1,7 +1,10 @@
+require 'yaml'
+
 module Highland
   module CollectionMethods
-    def initialize
-    end
+    # def init(collection)      
+    #   DIR
+    # end
   	# Users.create(:age => 26, :name => 'Chris')
     def create(*params)
       "called create"

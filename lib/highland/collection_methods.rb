@@ -9,7 +9,7 @@ module Highland
 
   	# Users.create(:age => 26, :name => 'Chris')
     def create(*params)
-      id = Random.rand(999...999999)+Random.rand(999...999999)
+      id = rand(999999999999999999)     
       rec = {}
       params[0].each_key do |key|
         rec[key.to_s] ||= {}

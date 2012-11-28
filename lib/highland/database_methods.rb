@@ -83,5 +83,9 @@ module Highland
       @vhash, @vhelper = nil, nil
     end
 
+    def clear_static
+      File.truncate(@file, 0)
+    end
+
   end
 end

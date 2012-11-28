@@ -140,4 +140,16 @@ describe Highland do
     @dummy_class.instance_variable_get("@vhelper").should == nil
   end
 
+  it "should clear static collections" do
+    rio(@dummy_shash) > rio(@dummy_shash_victim)
+    @dummy_class.load_vhash(@dummy_shash_victim)
+    @dummy_class.load_vhelper
+    rio(@dummy_shash_victim)[0...10].should_not == []
+    @dummy_class.clear_static
+    rio(@dummy_shash_victim)[0...10].should == []
+    File.delete(@dummy_shash_victim)
+  end
+
+
+
 end

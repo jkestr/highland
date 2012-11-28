@@ -4,7 +4,6 @@ DB = File.join(File.dirname(__FILE__), "/dummy_dir" )
 describe Highland do
   before(:each) do
     @collection = File.join(File.dirname(__FILE__), "/dummy_dir/db/dummyusers.hl" )
-    DummyUsers.init_collection(@collection)
   end
   
   it "should create new classes" do
@@ -12,7 +11,15 @@ describe Highland do
   end
   
   it "should create" do
-    DummyUsers.create(:age => 26, :name => 'Chris').should == "called create"
+    DummyUsers.init_collection(@collection)
+    a = DummyUsers.create(:age => 26, :name => 'Chris')
+    b = DummyUsers.find_db(:age => 26, :name => 'Chris')
+    a.should == b
+    DummyUsers.clear_virtual
+    DummyUsers.init_collection(@collection)
+    c = DummyUsers.find_db(:age => 26, :name => 'Chris')
+    a.should == c
+    DummyUsers.clear_static
   end
 
   it "should provide querying" do

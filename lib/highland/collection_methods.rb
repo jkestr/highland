@@ -3,11 +3,24 @@ module Highland
     
     def init_collection(collection)
       init_file(collection)
+      load_vhash(@file)
+      load_vhelper
     end
 
   	# Users.create(:age => 26, :name => 'Chris')
     def create(*params)
-      "called create"
+      id = Random.rand(999...999999)+Random.rand(999...999999)
+      rec = {}
+      params[0].each_key do |key|
+        rec[key.to_s] ||= {}
+        rec[key.to_s]["type"] = params[0][key].class.to_s.downcase
+        rec[key.to_s]["value"] = params[0][key]
+      end
+      element = {id => rec}
+      insert_vhash(element)
+      insert_vhelper(element)
+      insert_shash(element)
+      return element
     end
 
     # Users.where(:name => 'John')

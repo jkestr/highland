@@ -2,11 +2,7 @@ require File.join(File.dirname(__FILE__), "/../spec_helper" )
 DB = File.join(File.dirname(__FILE__), "/dummy_dir" )
 
 describe Highland do
-
-  # before(:each) do
-  #   Highland.run DB
-  # end
-  
+ 
   it "should create new classes" do
     DummyUsers.class.should == Class
     DummyUsers.superclass.should == HighlandObject

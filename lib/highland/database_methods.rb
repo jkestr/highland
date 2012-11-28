@@ -2,7 +2,7 @@ require 'rio'
 
 module Highland
   module DatabaseMethods
-  	
+
   	def init_file(shash)
   	  @file = shash
   	end
@@ -79,7 +79,7 @@ module Highland
       end
     end
 
-    def clear
+    def clear_virtual
       @vhash, @vhelper = nil, nil
     end
 

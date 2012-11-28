@@ -102,7 +102,7 @@ describe Highland do
     @dummy_class.find(:age => 21)[2]["name"]["type"].should == "string"
   end
 
-  it "should insert new element into static hash" do
+  it "should insert new element into existing static hash" do
     rio(@dummy_shash) > rio(@dummy_shash_victim)
     @dummy_class.load_vhash(@dummy_shash_victim)
     @dummy_class.load_vhelper
@@ -114,6 +114,9 @@ describe Highland do
     @dummy_class.instance_variable_get("@vhash")[100500].class.should == Hash
     @dummy_class.instance_variable_get("@vhash")[100500].keys.sort.should == ["name","age"].sort
     File.delete(@dummy_shash_victim)
+  end
+
+  it "should insert new element into empty static hash" do
     rio(@dummy_shash_empty) > rio(@dummy_shash_empty_victim)
     @dummy_class.load_vhash(@dummy_shash_empty_victim)
     @dummy_class.load_vhelper
@@ -127,12 +130,12 @@ describe Highland do
     File.delete(@dummy_shash_empty_victim)
   end
 
-  it "should clear collection" do
+  it "should clear virtual collections" do
   	@dummy_class.load_vhash(@dummy_shash)
     @dummy_class.load_vhelper
     @dummy_class.instance_variable_get("@vhash").should_not == nil
     @dummy_class.instance_variable_get("@vhelper").should_not == nil
-    @dummy_class.clear
+    @dummy_class.clear_virtual
     @dummy_class.instance_variable_get("@vhash").should == nil
     @dummy_class.instance_variable_get("@vhelper").should == nil
   end

@@ -1,5 +1,3 @@
-require 'yaml'
-
 module Highland
   module CollectionMethods
     # def init(collection)      

@@ -150,31 +150,49 @@ describe Highland do
     File.delete(@dummy_shash_victim)
   end
 
-  it "should delete element from virtual collections by id" do
-    @dummy_class.load_vhash(@dummy_shash)
+  it "should delete element from collections by id" do
+    rio(@dummy_shash) > rio(@dummy_shash_victim)
+    @dummy_class.load_vhash(@dummy_shash_victim)
     @dummy_class.load_vhelper
     @dummy_class.instance_variable_get("@vhash")[1]["name"]["value"].should == "John"
     @dummy_class.instance_variable_get("@vhelper")["name"]["John"].include?(1).should == true
+    @dummy_class.instance_variable_get("@vhash").keys.sort.should == [1,2,3,5]
     @dummy_class.delete(1)
     @dummy_class.find(1).should == {}
+    @dummy_class.load_vhash(@dummy_shash_victim)
+    @dummy_class.load_vhelper
+    @dummy_class.instance_variable_get("@vhash").keys.sort.should == [2,3,5]
+    File.delete(@dummy_shash_victim)
   end
 
-  it "should delete element from virtual collections by one parameter" do
-    @dummy_class.load_vhash(@dummy_shash)
+  it "should delete element from collections by one parameter" do
+    rio(@dummy_shash) > rio(@dummy_shash_victim)
+    @dummy_class.load_vhash(@dummy_shash_victim)
     @dummy_class.load_vhelper
     @dummy_class.instance_variable_get("@vhash")[1]["name"]["value"].should == "John"
     @dummy_class.instance_variable_get("@vhelper")["name"]["John"].include?(1).should == true
+    @dummy_class.instance_variable_get("@vhash").keys.sort.should == [1,2,3,5]
     @dummy_class.delete(:name => "John")
     @dummy_class.find(:name => "John").should == {}
+    @dummy_class.load_vhash(@dummy_shash_victim)
+    @dummy_class.load_vhelper
+    @dummy_class.instance_variable_get("@vhash").keys.sort.should == [2,3,5]
+    File.delete(@dummy_shash_victim)
   end
 
-  it "should delete element from virtual collections by several parameters" do
-    @dummy_class.load_vhash(@dummy_shash)
+  it "should delete element from virtual by several parameters" do
+    rio(@dummy_shash) > rio(@dummy_shash_victim)
+    @dummy_class.load_vhash(@dummy_shash_victim)
     @dummy_class.load_vhelper
     @dummy_class.instance_variable_get("@vhash")[1]["name"]["value"].should == "John"
     @dummy_class.instance_variable_get("@vhelper")["name"]["John"].include?(1).should == true
+    @dummy_class.instance_variable_get("@vhash").keys.sort.should == [1,2,3,5]
     @dummy_class.delete(:name => "John", :age => 20)
     @dummy_class.find(:name => "John", :age => 20).should == {}
+    @dummy_class.load_vhash(@dummy_shash_victim)
+    @dummy_class.load_vhelper
+    @dummy_class.instance_variable_get("@vhash").keys.sort.should == [2,3,5]
+    File.delete(@dummy_shash_victim)
   end
 
 end

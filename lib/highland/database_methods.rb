@@ -74,12 +74,13 @@ module Highland
     end
 
     def insert_shash(element)
-      empty = true if rio(@file)[0...10] == []
-      empty = false if rio(@file)[0...10] != []
+      # empty = true if rio(@file).contents == ""
+      # empty = false if rio(@file).contents != ""
       File.open(@file, 'a') do |file|
         element.each_key do |id|
-          file.puts ", #{id} => #{element[id]}" if empty == false
-          file.puts "#{id} => #{element[id]}" if empty == true
+          file.puts "#{id} => #{element[id]}," #if empty == false
+          #file.puts "#{id} => #{element[id]}" if empty == true
+          #empty = false
         end        
       end
     end
@@ -97,7 +98,11 @@ module Highland
         @vhash.remove!(id)
       end
       load_vhelper
+      clear_static
+      insert_shash(@vhash)
     end
+
+    
 
   end
 end

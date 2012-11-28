@@ -10,15 +10,30 @@ describe Highland do
     DummyUsers.class.should == Class
   end
   
-  it "should create" do
+  it "should create one element" do
     DummyUsers.init_collection(@collection)
-    a = DummyUsers.create(:age => 26, :name => 'Chris')
-    b = DummyUsers.find_db(:age => 26, :name => 'Chris')
+    a = DummyUsers.create(:age => 26, :name => 'Chris').values
+    b = DummyUsers.find_db(:age => 26, :name => 'Chris').values
     a.should == b
     DummyUsers.clear_virtual
     DummyUsers.init_collection(@collection)
-    c = DummyUsers.find_db(:age => 26, :name => 'Chris')
+    c = DummyUsers.find_db(:age => 26, :name => 'Chris').values
     a.should == c
+    DummyUsers.clear_static
+  end
+
+  it "should create many elements" do
+    DummyUsers.init_collection(@collection)
+    DummyUsers.clear_static
+    i = 20
+    15.times do
+      a = DummyUsers.create(:age => i, :name => "Fake#{i}").values
+      DummyUsers.clear_virtual
+      DummyUsers.init_collection(@collection)
+      b = DummyUsers.find_db(:age => i, :name => "Fake#{i}").values
+      a.should == b
+      i += 1
+    end
     DummyUsers.clear_static
   end
 

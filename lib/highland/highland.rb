@@ -15,11 +15,7 @@ end
 
 collections = ["DummyUsers"]
 #collections = YAML.load_file("#{db}/config.yml").keys
-Object.const_set(
-  "HighlandObject", Class.new do
-    include Highland::CollectionMethods
-  end
-)
-collections.each do |classname|
-  eval("class #{classname} < HighlandObject; end;")
+collections.each do |collection|
+  new_collection = Object.const_set(collection, Class.new)
+  new_collection.extend Highland::CollectionMethods
 end

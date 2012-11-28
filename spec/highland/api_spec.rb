@@ -5,7 +5,6 @@ describe Highland do
  
   it "should create new classes" do
     DummyUsers.class.should == Class
-    DummyUsers.superclass.should == HighlandObject
   end
   
   it "should create" do

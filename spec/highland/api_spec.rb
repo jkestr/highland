@@ -70,7 +70,22 @@ describe Highland do
   end
 
   it "should provide querying with all" do
-    DummyUsers.all(:name => 'John').should == "called all"
+    DummyUsers.init_collection(@collection)
+    DummyUsers.clear_static
+    i = 20
+    5.times do
+      DummyUsers.create(:age => i, :name => "Fake")
+      i += 1
+    end
+    DummyUsers.all(:name => 'Fake').class.should == Array
+    DummyUsers.all(:name => 'Fake').length.should == 5
+    DummyUsers.all(:name => 'Fake', :age => 20).class.should == Array
+    DummyUsers.all(:name => 'Fake', :age => 20).length.should == 1
+    DummyUsers.all(:name => 'Fake').first.class.should == HighlandObject
+    DummyUsers.all(:name => 'Fake').first.name.should == 'Fake'
+    DummyUsers.all(:name => 'Fake', :age => 20).first.age.should == 20
+    DummyUsers.clear_static
+    DummyUsers.clear_virtual
   end
 
   it "should be able to find" do

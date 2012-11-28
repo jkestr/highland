@@ -49,7 +49,7 @@ module Highland
 
     # Users.all(:name => 'John')
     def all(*params)
-      "called all"
+      where(*params)
     end
 
     # Users.find('chris')

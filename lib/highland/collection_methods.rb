@@ -26,6 +26,7 @@ module Highland
     # Users.where(:name => 'John')
     def where(*params)
       "called where"
+      
     end
 
     # Users.first(:name => 'John')

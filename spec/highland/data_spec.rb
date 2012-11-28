@@ -6,10 +6,11 @@ describe Highland do
   end
   
   before(:each) do
-  	@dummy_shash = File.join(File.dirname(__FILE__), "/dummy_dir/db/dummy.hl" )
-  	@dummy_shash_victim = File.join(File.dirname(__FILE__), "/dummy_dir/db/dummy_victim.hl" )
-  	@dummy_shash_empty = File.join(File.dirname(__FILE__), "/dummy_dir/db/empty.hl" )
-  	@dummy_shash_empty_victim = File.join(File.dirname(__FILE__), "/dummy_dir/db/empty_victim.hl" )
+  	@dummy_shash = File.join(File.dirname(__FILE__), "/dummy_dir/db/dummy.hl")
+    @dummy_shash_ghost = File.join(File.dirname(__FILE__), "/dummy_dir/db/dummy_ghost.hl")
+  	@dummy_shash_victim = File.join(File.dirname(__FILE__), "/dummy_dir/db/dummy_victim.hl")
+  	@dummy_shash_empty = File.join(File.dirname(__FILE__), "/dummy_dir/db/empty.hl")
+  	@dummy_shash_empty_victim = File.join(File.dirname(__FILE__), "/dummy_dir/db/empty_victim.hl")
     @dummy_class = DummyClass.new
     @dummy_class.extend(Highland::DatabaseMethods)
 
@@ -39,6 +40,13 @@ describe Highland do
                            }
                          }
                       }
+  end
+
+  it "should create new hl if there is none" do
+    File.exists?(@dummy_shash_ghost).should == false
+    @dummy_class.init_file(@dummy_shash_ghost)
+    File.exists?(@dummy_shash_ghost).should == true
+    File.delete(@dummy_shash_ghost)
   end
 
   it "should load virtual hash" do

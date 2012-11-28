@@ -6,7 +6,12 @@ module Highland
 
   	def init_file(shash)
   	  @file = shash
+      generate_hl if File.exists?(@file) == false
   	end
+
+    def generate_hl
+      File.new(@file, "w")
+    end
 
     def load_vhash(shash)
       init_file(shash)

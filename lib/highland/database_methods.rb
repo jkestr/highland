@@ -102,7 +102,7 @@ module Highland
       id = query[0][:id]
       query[0].each_key do |key|
         next if key == :id
-        @vhash[id][key.to_s]["value"] = query[0][key]
+        @vhash[id][key.to_s]["value"] = query[0][key] if @vhash[id].has_key?(key.to_s)
       end
       load_vhelper
       clear_static

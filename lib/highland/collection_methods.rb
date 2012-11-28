@@ -25,8 +25,20 @@ module Highland
 
     # Users.where(:name => 'John')
     def where(*params)
-      "called where"
-      
+      output = []
+      object = Object.const_set("HighlandObject", Class.new)
+      object_instances, i = [], 0
+      find_db(*params).each_key do |id|        
+        object_instances[i] = object.new
+        params[0].each_key do |key|
+          method = key
+          value = params[0][key]          
+          object_instances[i].class.send(:define_method, key) { value }          
+        end        
+        output << object_instances[i]
+        i += 1
+      end
+      return output
     end
 
     # Users.first(:name => 'John')

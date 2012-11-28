@@ -8,3 +8,6 @@ class Hash
     self.dup.remove!(*keys)
   end
 end
+
+class HighlandObject < Array
+end

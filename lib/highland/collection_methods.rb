@@ -7,7 +7,6 @@ module Highland
       load_vhelper
     end
 
-  	# Users.create(:age => 26, :name => 'Chris')
     def create(*params)
       id = rand(999999999999999999)     
       rec = {}
@@ -23,19 +22,16 @@ module Highland
       return element
     end
 
-    # Users.where(:name => 'John')
     def where(*params)
       hash = find_db(*params)
       output = objectize(hash)
       return output
     end
 
-    # Users.first(:name => 'John')
     def first(*params)
       where(*params).first
     end
 
-    # Users.all(:name => 'John')
     def all(*params)
       return where(*params) if params[0].class == Hash
       return objectize(@vhash)
@@ -86,7 +82,6 @@ module Highland
       count(*params)
     end
 
-    # Users.distinct(:age) => [26, 29, 28]
     def distinct(column)
       return @vhelper[column.to_s].keys if column.to_s != "id"
       return @vhash.keys if column.to_s == "id"
@@ -96,14 +91,14 @@ module Highland
       update_db(*params)
     end 
 
-    # Users.remove(:name => 'John')
-    # Users.where(:name => 'Chris').remove
-    # Users.remove
     def remove(*params)
       delete(*params)
     end 
 
-   # private
+    def clear
+      clear_virtual
+      clear_static
+    end
 
     def objectize(hash)
       output = []

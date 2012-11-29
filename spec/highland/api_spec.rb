@@ -264,7 +264,6 @@ describe Highland do
   end
 
   it "should be able to remove" do
-   # DummyUsers.remove(:name => 'John').should == "called remove"
     DummyUsers.init_collection(@collection)
     DummyUsers.clear_static
     i = 20
@@ -286,4 +285,18 @@ describe Highland do
     DummyUsers.clear_virtual    
   end
   
+  it "should clear collection" do
+    DummyUsers.init_collection(@collection)
+    DummyUsers.clear_static
+    i = 20
+    10.times do
+      DummyUsers.create(:age => i, :name => "Fake#{i}")
+    end
+    DummyUsers.return_vhash.keys.length.should == 10
+    DummyUsers.clear_static
+    DummyUsers.init_collection(@collection)
+    DummyUsers.return_vhash.keys.length.should == 0
+    DummyUsers.clear_virtual        
+  end
+
 end

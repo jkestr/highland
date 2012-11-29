@@ -114,5 +114,9 @@ module Highland
       insert_shash(@vhash)
     end
 
+    def return_vhash
+      @vhash
+    end
+
   end
 end

@@ -37,6 +37,23 @@ describe Highland do
     DummyUsers.clear_static
     DummyUsers.clear_virtual
   end
+  
+  it "should objectize" do
+    DummyUsers.init_collection(@collection)
+    DummyUsers.clear_static
+    i = 20
+    15.times do
+      DummyUsers.create(:age => i, :name => "Fake#{i}")
+      i += 1
+    end
+    vhash = DummyUsers.return_vhash
+    a = vhash.keys
+    b = []
+    DummyUsers.objectize(vhash).each {|el| b << el.id }
+    b.sort.should == a.sort    
+    DummyUsers.clear_static
+    DummyUsers.clear_virtual    
+  end
 
   it "should provide querying with where" do
     DummyUsers.init_collection(@collection)
@@ -53,6 +70,12 @@ describe Highland do
     DummyUsers.where(:name => 'Fake').first.class.should == HighlandObject
     DummyUsers.where(:name => 'Fake').first.name.should == 'Fake'
     DummyUsers.where(:name => 'Fake', :age => 20).first.age.should == 20
+    DummyUsers.where(:name => 'Fake').first.age.should == 20
+    DummyUsers.where(:name => 'Fake').last.age.should == 24
+    DummyUsers.where(:name => 'Fake').class.should == Array
+    DummyUsers.where(:name => 'Fake').length.should == 5
+    DummyUsers.where(:name => 'Fake').last.class.should == HighlandObject
+    DummyUsers.where(:name => 'Fake').last.name.should == 'Fake'
     DummyUsers.clear_static
     DummyUsers.clear_virtual
   end
@@ -89,6 +112,8 @@ describe Highland do
     DummyUsers.all(:name => 'Fake').first.class.should == HighlandObject
     DummyUsers.all(:name => 'Fake').first.name.should == 'Fake'
     DummyUsers.all(:name => 'Fake', :age => 20).first.age.should == 20
+    DummyUsers.all.first.name.should_not == DummyUsers.all.last.name.should_not
+    DummyUsers.all.first.age.should_not == DummyUsers.all.last.age.should_not
     DummyUsers.all.class.should == Array
     DummyUsers.all.length.should == 10
     DummyUsers.all.last.class.should == HighlandObject
@@ -98,9 +123,37 @@ describe Highland do
   end
 
   it "should be able to find" do
-    DummyUsers.find('chris').should == "called find"
-    DummyUsers.find('chris', 'steve').should == "called find"
-    DummyUsers.find(['chris', 'steve']).should == "called find"
+    DummyUsers.init_collection(@collection)
+    DummyUsers.clear_static    
+    i = 20
+    5.times do
+      DummyUsers.create(:age => i, :name => "FinderFake")
+      i += 1
+    end
+    fake_ids = []
+    DummyUsers.all.each {|dude| fake_ids << dude.id}
+    fake_ids.should_not == []
+    fake_ids.first.should_not == fake_ids.last
+    fake_ids.first.class.should == Fixnum
+    fake_ids.length.should == 5
+    DummyUsers.find(fake_ids).class.should == Array
+    DummyUsers.find(fake_ids).first.class.should == HighlandObject
+    DummyUsers.find(fake_ids).first.name.should == "FinderFake"
+    DummyUsers.find(fake_ids).first.age.should == 20
+    DummyUsers.find(fake_ids).length.should == 5
+    DummyUsers.find(:age => [20,21,22]).class.should == Array
+    DummyUsers.find(:age => [20,21,22]).first.class.should == HighlandObject
+    DummyUsers.find(:age => [20,21,22]).length.should == 3
+    DummyUsers.find(:age => [20,21,22,28]).class.should == Array
+    DummyUsers.find(:age => [20,21,22,28]).first.class.should == HighlandObject
+    DummyUsers.find(:age => [20,21,22,28]).length.should == 3
+    DummyUsers.find(:age => [28]).class.should == Array
+    DummyUsers.find(:age => [28]).first.should == nil
+    DummyUsers.find(:age => 20).class.should == Array
+    DummyUsers.find(:age => 20).length.should == 1
+    DummyUsers.find(:age => 20).first.class.should == HighlandObject
+    DummyUsers.clear_static
+    DummyUsers.clear_virtual
   end
 
   it "should be able to sort" do

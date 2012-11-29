@@ -26,7 +26,10 @@ module Highland
     # Users.where(:name => 'John')
     def where(*params)
       hash = find_db(*params)
-      objectize(hash)
+      #puts "#{hash.keys}"
+      output = objectize(hash)
+
+      return output
     end
 
     # Users.first(:name => 'John')
@@ -40,12 +43,38 @@ module Highland
       return objectize(@vhash)
     end
 
-    # Users.find('chris')
-    # Users.find('chris', 'steve')
-    # Users.find(['chris', 'steve'])
     def find(*params)
-      "called find"
+      if params[0].class == Array
+        output = []
+        params[0].each do |id|
+          output += objectize(find_db(id))
+        end
+        return output
+      end
+      if params[0].class == Hash
+        params[0].each_key do |key|
+          inp = [params[0][key]] if params[0][key].class != Array
+          inp = params[0][key] if params[0][key].class == Array
+          output = []
+          inp.each do |el|
+            output = output + all(key => el)
+          end
+        end       
+        return output
+      end
     end
+    # DummyUsers.find(fake_ids)
+    # DummyUsers.find(:age => [20,21,22]).class.should == Array
+    # DummyUsers.find(:age => [20,21,22]).first.class.should == HighlandObject
+    # DummyUsers.find(:age => [20,21,22]).length.should == 3
+    # DummyUsers.find(:age => [20,21,22,28]).class.should == Array
+    # DummyUsers.find(:age => [20,21,22,28]).first.class.should == HighlandObject
+    # DummyUsers.find(:age => [20,21,22,28]).length.should == 3
+    # DummyUsers.find(:age => [28]).class.should == Array
+    # DummyUsers.find(:age => [28]).first.should == nil
+    # DummyUsers.find(:age => 20).class.should == Array
+    # DummyUsers.find(:age => 20).length.should == 1
+    # DummyUsers.find(:age => 20)
 
     # Users.sort(:age).all
     # Users.sort(:age.asc).all
@@ -95,20 +124,22 @@ module Highland
       "called remove"
     end 
 
-    private
+   # private
 
     def objectize(hash)
       output = []
-      object = Object.const_set("HighlandObject", Class.new)
+      Object.const_set("HighlandObject", Class.new) unless defined?(HighlandObject)
       object_instances, i = [], 0
       hash.each_key do |id|        
-        object_instances[i] = object.new
-        object_instances[i].class.send(:define_method, :id) { id }
+        object_instances[i] = HighlandObject.new
+        object_instances[i].instance_variable_set(:@id, id)        
+        object_instances[i].class.send(:define_method, :id) { @id }        
         hash[id].each_key do |key|
-          method = key
-          value = hash[id][key]["value"]          
-          object_instances[i].class.send(:define_method, key) { value }          
-        end        
+          instance = "@#{key}"
+          value = hash[id][key]["value"]
+          object_instances[i].instance_variable_set(instance.to_sym, value)                  
+          object_instances[i].singleton_class.send(:define_method, key) { eval(instance) }          
+        end
         output << object_instances[i]
         i += 1
       end

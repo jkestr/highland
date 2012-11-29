@@ -235,10 +235,29 @@ describe Highland do
     DummyUsers.clear_virtual
   end
 
-  it "should select certain fields" do
-    DummyUsers.fields(:age).should == "called fields"
-    DummyUsers.only(:age).should == "called only"
-    DummyUsers.ignore(:name).should == "called ignore"
+  it "should update" do
+    DummyUsers.init_collection(@collection)
+    DummyUsers.clear_static
+    i = 20
+    15.times do
+      a = DummyUsers.create(:age => i, :name => "Fake#{i}").values
+      DummyUsers.clear_virtual
+      DummyUsers.init_collection(@collection)
+      b = DummyUsers.find_db(:age => i, :name => "Fake#{i}").values
+      a.should == b
+      kid = DummyUsers.first(:age => i, :name => "Fake#{i}").id
+      before = DummyUsers.count
+      DummyUsers.distinct(:name).include?("Fake#{i}").should == true
+      DummyUsers.distinct(:name).include?("OldFake#{i}").should == false
+      DummyUsers.update(:id => kid,:age => i+100, :name => "OldFake#{i}")
+      DummyUsers.distinct(:name).include?("Fake#{i}").should == false
+      DummyUsers.distinct(:name).include?("OldFake#{i}").should == true      
+      after = DummyUsers.count
+      after.should == before
+      i += 1
+    end
+    DummyUsers.clear_static
+    DummyUsers.clear_virtual
   end
 
   # it "should have symbol operators" do

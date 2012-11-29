@@ -96,19 +96,8 @@ module Highland
       @vhelper[column.to_s].keys
     end
 
-    # Users.fields(:age).find('chris') => {"_id"=>"chris", "age"=>26}
-    def fields(*params)
-      "called fields"
-    end 
-
-    # Users.only(:age).find('chris') => {"_id"=>"chris", "age"=>26}
-    def only(*params)
-      "called only"
-    end 
-
-    # Users.ignore(:name).find('chris') => {"_id"=>"chris", "age"=>26}
-    def ignore(*params)
-      "called ignore"
+    def update(*params)
+      update_db(*params)
     end 
 
     # Users.remove(:name => 'John')

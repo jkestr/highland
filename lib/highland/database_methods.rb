@@ -103,7 +103,7 @@ module Highland
       insert_shash(@vhash)
     end
 
-    def update(*query)
+    def update_db(*query)
       id = query[0][:id]
       query[0].each_key do |key|
         next if key == :id

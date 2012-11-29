@@ -211,7 +211,7 @@ describe Highland do
     @dummy_class.instance_variable_get("@vhash")[1]["age"]["value"].should == 20
     @dummy_class.instance_variable_get("@vhelper")["name"]["John"].include?(1).should == true
     @dummy_class.instance_variable_get("@vhash").keys.sort.should == [1,2,3,5]
-    @dummy_class.update(:id => 1, :name => "Fooo", :age => 70)
+    @dummy_class.update_db(:id => 1, :name => "Fooo", :age => 70)
     @dummy_class.instance_variable_get("@vhash")[1]["name"]["value"].should == "Fooo"
     @dummy_class.instance_variable_get("@vhash")[1]["age"]["value"].should == 70
     @dummy_class.instance_variable_get("@vhelper")["name"]["Fooo"].include?(1).should == true

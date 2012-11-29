@@ -130,8 +130,7 @@ describe Highland do
       DummyUsers.create(:age => i, :name => "FinderFake")
       i += 1
     end
-    fake_ids = []
-    DummyUsers.all.each {|dude| fake_ids << dude.id}
+    fake_ids = DummyUsers.distinct(:id)    
     fake_ids.should_not == []
     fake_ids.first.should_not == fake_ids.last
     fake_ids.length.should == 5
@@ -204,7 +203,9 @@ describe Highland do
 
   it "should be able to count" do
     DummyUsers.init_collection(@collection)
+    DummyUsers.clear_virtual    
     DummyUsers.clear_static
+    DummyUsers.init_collection(@collection)    
     i = 20
     5.times do
       DummyUsers.create(:age => i, :name => "Fake")
@@ -232,6 +233,7 @@ describe Highland do
     end
     DummyUsers.distinct(:name).should == ["Fake"]
     DummyUsers.distinct(:age).sort.should == [20,21,22,23,24].sort
+    DummyUsers.distinct(:id).length.should == 5
     DummyUsers.clear_static
     DummyUsers.clear_virtual
   end

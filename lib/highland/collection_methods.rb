@@ -89,7 +89,8 @@ module Highland
 
     # Users.distinct(:age) => [26, 29, 28]
     def distinct(column)
-      @vhelper[column.to_s].keys
+      return @vhelper[column.to_s].keys if column.to_s != "id"
+      return @vhash.keys if column.to_s == "id"
     end
 
     def update(*params)

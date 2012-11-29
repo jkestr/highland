@@ -87,9 +87,8 @@ module Highland
       return @vhash.keys.length
     end
 
-
     def size(*params)
-      "called size"
+      count(*params)
     end
 
     # Users.distinct(:age) => [26, 29, 28]

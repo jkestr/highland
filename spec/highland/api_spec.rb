@@ -213,12 +213,26 @@ describe Highland do
     DummyUsers.count(:name => 'Fake').should == 5
     DummyUsers.count(:age => 21).should == 1
     DummyUsers.count.should == 5
+    DummyUsers.size(:name => 'Fake', :age => 20).should == 1
+    DummyUsers.size(:name => 'Fake').should == 5
+    DummyUsers.size(:age => 21).should == 1
+    DummyUsers.count.should == 5    
     DummyUsers.clear_static
     DummyUsers.clear_virtual
   end
 
   it "should distinct" do
-    DummyUsers.distinct(:age).should == "called distinct"
+    DummyUsers.init_collection(@collection)
+    DummyUsers.clear_static
+    i = 20
+    5.times do
+      DummyUsers.create(:age => i, :name => "Fake")
+      i += 1
+    end
+    DummyUsers.distinct(:name).should == ["Fake"]
+    DummyUsers.distinct(:age).sort.should == [20,21,22,23,24].sort
+    DummyUsers.clear_static
+    DummyUsers.clear_virtual
   end
 
   it "should select certain fields" do

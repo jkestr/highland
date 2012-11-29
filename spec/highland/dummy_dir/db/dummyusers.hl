@@ -1,0 +1,5 @@
+93686303587556398 => {"age"=>{"type"=>"fixnum", "value"=>20}, "name"=>{"type"=>"string", "value"=>"Fake"}},
+317415014228825970 => {"age"=>{"type"=>"fixnum", "value"=>21}, "name"=>{"type"=>"string", "value"=>"Fake"}},
+842771022369288790 => {"age"=>{"type"=>"fixnum", "value"=>22}, "name"=>{"type"=>"string", "value"=>"Fake"}},
+223516294251069426 => {"age"=>{"type"=>"fixnum", "value"=>23}, "name"=>{"type"=>"string", "value"=>"Fake"}},
+940986309075167020 => {"age"=>{"type"=>"fixnum", "value"=>24}, "name"=>{"type"=>"string", "value"=>"Fake"}},

@@ -9,11 +9,10 @@ end
 desc "commit and push"
 task :cp do
   system "git add ."
-  verbs = ["fucks","eats","looks at","kills","inspirates","beats","wins","runs away from","loves","kicks","attacks", "dreams about","supports","deffends","impressed","excited","became popular among","danced with","chilled out with","slept with", "drank with"]
-  nouns = ["pigs","cows","rabbits","elephants","chocolate bars","dogs","cats","busty bitches","democrats","liberals","iPhones","MacBooks","bums"]
+  nouns = ["beer", "wine", "vodka", "tequila", "whiskey", "vermouth", "jelly", "soda", "milk", "brew", "orange juice", "birch juice", "yogurt", "rum", "port", "mate", "green tea", "Ceylon tea", "Lapacho", "Catuaba", "cranberry liqueur"]
   quantity = Random.rand(2...100500)
-  vi = Random.rand(0...(verbs.length - 1))
   ni = Random.rand(0...(nouns.length - 1))
-  system "git commit -m \"mac-r #{verbs[vi]} #{quantity} #{nouns[ni]}\""
+  system "git commit -m \"mac-r drank #{quantity} bottles of #{nouns[ni]}\""
   system "git push origin master"
 end
+

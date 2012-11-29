@@ -77,6 +77,11 @@ describe Highland do
       DummyUsers.create(:age => i, :name => "Fake")
       i += 1
     end
+    i = 30
+    5.times do
+      DummyUsers.create(:age => i, :name => "Fooo")
+      i += 1
+    end
     DummyUsers.all(:name => 'Fake').class.should == Array
     DummyUsers.all(:name => 'Fake').length.should == 5
     DummyUsers.all(:name => 'Fake', :age => 20).class.should == Array
@@ -84,6 +89,10 @@ describe Highland do
     DummyUsers.all(:name => 'Fake').first.class.should == HighlandObject
     DummyUsers.all(:name => 'Fake').first.name.should == 'Fake'
     DummyUsers.all(:name => 'Fake', :age => 20).first.age.should == 20
+    DummyUsers.all.class.should == Array
+    DummyUsers.all.length.should == 10
+    DummyUsers.all.last.class.should == HighlandObject
+    DummyUsers.all.last.name.should == 'Fooo'
     DummyUsers.clear_static
     DummyUsers.clear_virtual
   end

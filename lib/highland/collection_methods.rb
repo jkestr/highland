@@ -42,15 +42,11 @@ module Highland
     end
 
     def find(*params)
-      if params[0].class == Array
+      if params[0].class != Hash
         output = []
-        params[0].each do |id|
+        params.each do |id|
           output += objectize(find_db(id))
         end
-        return output
-      end
-      if params[0].class == Fixnum
-        output = objectize(find_db(params[0]))
         return output
       end
       if params[0].class == Hash

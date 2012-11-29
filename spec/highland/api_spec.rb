@@ -135,11 +135,11 @@ describe Highland do
     fake_ids.should_not == []
     fake_ids.first.should_not == fake_ids.last
     fake_ids.length.should == 5
-    DummyUsers.find(fake_ids).class.should == Array
-    DummyUsers.find(fake_ids).first.class.should == HighlandObject
-    DummyUsers.find(fake_ids).first.name.should == "FinderFake"
-    DummyUsers.find(fake_ids).first.age.should == 20
-    DummyUsers.find(fake_ids).length.should == 5
+    DummyUsers.find(*fake_ids).class.should == Array
+    DummyUsers.find(*fake_ids).first.class.should == HighlandObject
+    DummyUsers.find(*fake_ids).first.name.should == "FinderFake"
+    DummyUsers.find(*fake_ids).first.age.should == 20
+    DummyUsers.find(*fake_ids).length.should == 5
     DummyUsers.find(:age => [20,21,22]).class.should == Array
     DummyUsers.find(:age => [20,21,22]).first.class.should == HighlandObject
     DummyUsers.find(:age => [20,21,22]).length.should == 3

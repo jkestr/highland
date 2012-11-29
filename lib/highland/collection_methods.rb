@@ -25,21 +25,23 @@ module Highland
 
     # Users.where(:name => 'John')
     def where(*params)
-      output = []
-      object = Object.const_set("HighlandObject", Class.new)
-      object_instances, i = [], 0
-      find_db(*params).each_key do |id|        
-        object_instances[i] = object.new
-        object_instances[i].class.send(:define_method, :id) { id }
-        params[0].each_key do |key|
-          method = key
-          value = params[0][key]          
-          object_instances[i].class.send(:define_method, key) { value }          
-        end        
-        output << object_instances[i]
-        i += 1
-      end
-      return output
+      hash = find_db(*params)
+      objectize(hash,params)
+      # output = []
+      # object = Object.const_set("HighlandObject", Class.new)
+      # object_instances, i = [], 0
+      # find_db(*params).each_key do |id|        
+      #   object_instances[i] = object.new
+      #   object_instances[i].class.send(:define_method, :id) { id }
+      #   params[0].each_key do |key|
+      #     method = key
+      #     value = params[0][key]          
+      #     object_instances[i].class.send(:define_method, key) { value }          
+      #   end        
+      #   output << object_instances[i]
+      #   i += 1
+      # end
+      # return output
     end
 
     # Users.first(:name => 'John')
@@ -64,7 +66,7 @@ module Highland
     # Users.sort(:age.desc).all
     # Users.sort(:age).last
     def sort(*params)
-      "called sort"
+      
     end
 
     # Users.count # 3
@@ -106,6 +108,26 @@ module Highland
     def remove(*params)
       "called remove"
     end 
+
+    private
+
+    def objectize(hash,params)
+      output = []
+      object = Object.const_set("HighlandObject", Class.new)
+      object_instances, i = [], 0
+      hash.each_key do |id|        
+        object_instances[i] = object.new
+        object_instances[i].class.send(:define_method, :id) { id }
+        params[0].each_key do |key|
+          method = key
+          value = params[0][key]          
+          object_instances[i].class.send(:define_method, key) { value }          
+        end        
+        output << object_instances[i]
+        i += 1
+      end
+      return output
+    end
 
   end
 end

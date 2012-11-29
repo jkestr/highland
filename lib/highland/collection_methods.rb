@@ -51,6 +51,10 @@ module Highland
         end
         return output
       end
+      if params[0].class == Fixnum
+        output = objectize(find_db(params[0]))
+        return output
+      end
       if params[0].class == Hash
         params[0].each_key do |key|
           inp = [params[0][key]] if params[0][key].class != Array
@@ -59,40 +63,34 @@ module Highland
           inp.each do |el|
             output = output + all(key => el)
           end
-        end       
+        end  
         return output
       end
     end
-    # DummyUsers.find(fake_ids)
-    # DummyUsers.find(:age => [20,21,22]).class.should == Array
-    # DummyUsers.find(:age => [20,21,22]).first.class.should == HighlandObject
-    # DummyUsers.find(:age => [20,21,22]).length.should == 3
-    # DummyUsers.find(:age => [20,21,22,28]).class.should == Array
-    # DummyUsers.find(:age => [20,21,22,28]).first.class.should == HighlandObject
-    # DummyUsers.find(:age => [20,21,22,28]).length.should == 3
-    # DummyUsers.find(:age => [28]).class.should == Array
-    # DummyUsers.find(:age => [28]).first.should == nil
-    # DummyUsers.find(:age => 20).class.should == Array
-    # DummyUsers.find(:age => 20).length.should == 1
-    # DummyUsers.find(:age => 20)
 
-    # Users.sort(:age).all
-    # Users.sort(:age.asc).all
-    # Users.sort(:age.desc).all
-    # Users.sort(:age).last
     def sort(*params)
-      
+      column = params[0].keys.first if params[0].class == Hash
+      column = params[0] if params[0].class == Symbol
+      sequence = "asc"
+      sequence = "desc" if params[0].class == Hash and params[0][column] == "desc"
+      sorted = @vhelper[column.to_s].keys.sort{|x,y| x <=> y} if sequence == "asc"
+      sorted = @vhelper[column.to_s].keys.sort{|x,y| y <=> x} if sequence == "desc"
+      output = []
+      sorted.each do |s|
+        @vhelper[column.to_s][s].each do |id|
+          output += find(id)
+        end
+      end
+      return output
     end
 
-    # Users.count # 3
-    # Users.count(:name => 'John')       # 1
-    # Users.where(:name => 'John').count # 1
+
+
     def count(*params)
       "called count"
     end
 
-    # Users.size # 3
-    # Users.where(:name => 'John').size  # 1
+
     def size(*params)
       "called size"
     end
@@ -148,9 +146,3 @@ module Highland
 
   end
 end
-
-# # Symbol Operators
-# Users.where(:age.gt => 28).count       # 1 (steve)
-# Users.where(:age.lt => 28).count       # 1 (chris)
-# Users.where(:age.in => [26, 28]).to_a  # [chris, john]
-# Users.where(:age.nin => [26, 28]).to_a  # [steve]

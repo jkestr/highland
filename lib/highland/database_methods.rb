@@ -117,6 +117,9 @@ module Highland
     def return_vhash
       @vhash
     end
-
+    
+    def return_vhelper
+      @vhelper
+    end
   end
 end

@@ -26,7 +26,7 @@ module Highland
     # Users.where(:name => 'John')
     def where(*params)
       hash = find_db(*params)
-      objectize(hash,params)
+      objectize(hash)
       # output = []
       # object = Object.const_set("HighlandObject", Class.new)
       # object_instances, i = [], 0
@@ -111,16 +111,16 @@ module Highland
 
     private
 
-    def objectize(hash,params)
+    def objectize(hash)
       output = []
       object = Object.const_set("HighlandObject", Class.new)
       object_instances, i = [], 0
       hash.each_key do |id|        
         object_instances[i] = object.new
         object_instances[i].class.send(:define_method, :id) { id }
-        params[0].each_key do |key|
+        hash[id].each_key do |key|
           method = key
-          value = params[0][key]          
+          value = hash[id][key]["value"]          
           object_instances[i].class.send(:define_method, key) { value }          
         end        
         output << object_instances[i]

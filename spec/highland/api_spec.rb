@@ -134,7 +134,6 @@ describe Highland do
     DummyUsers.all.each {|dude| fake_ids << dude.id}
     fake_ids.should_not == []
     fake_ids.first.should_not == fake_ids.last
-    fake_ids.first.class.should == Fixnum
     fake_ids.length.should == 5
     DummyUsers.find(fake_ids).class.should == Array
     DummyUsers.find(fake_ids).first.class.should == HighlandObject
@@ -159,6 +158,8 @@ describe Highland do
   it "should have vhelper" do
     DummyUsers.init_collection(@collection)
     DummyUsers.clear_static
+    DummyUsers.clear_virtual
+    DummyUsers.init_collection(@collection)
     i = 20
     5.times do
       DummyUsers.create(:age => i, :name => "Fake")

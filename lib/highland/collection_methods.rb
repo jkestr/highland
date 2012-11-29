@@ -42,8 +42,9 @@ module Highland
     end
 
     def find(*params)
-      if params[0].class != Hash
-        output = []
+      output = []
+      puts "#{params}"
+      if params[0].class != Hash        
         params.each do |id|
           output += objectize(find_db(id))
         end
@@ -53,7 +54,6 @@ module Highland
         params[0].each_key do |key|
           inp = [params[0][key]] if params[0][key].class != Array
           inp = params[0][key] if params[0][key].class == Array
-          output = []
           inp.each do |el|
             output = output + all(key => el)
           end

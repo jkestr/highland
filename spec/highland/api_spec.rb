@@ -263,15 +263,27 @@ describe Highland do
     DummyUsers.clear_virtual
   end
 
-  # it "should have symbol operators" do
-  #   DummyUsers.where(:age.gt => 28).should == "called where with gt"
-  #   DummyUsers.where(:age.lt => 28).should == "called where with lt"
-  #   DummyUsers.where(:age.in => [26, 28]).should == "called where with in"
-  #   DummyUsers.where(:age.nin => [26, 28]).should == "called where with nin"
-  # end
-
   it "should be able to remove" do
-    DummyUsers.remove(:name => 'John').should == "called remove"
+   # DummyUsers.remove(:name => 'John').should == "called remove"
+    DummyUsers.init_collection(@collection)
+    DummyUsers.clear_static
+    i = 20
+    15.times do
+      a = DummyUsers.create(:age => i, :name => "Fake#{i}").values
+      DummyUsers.clear_virtual
+      DummyUsers.init_collection(@collection)
+      b = DummyUsers.find_db(:age => i, :name => "Fake#{i}").values
+      a.should == b
+      before = DummyUsers.count
+      DummyUsers.distinct(:name).include?("Fake#{i}").should == true
+      DummyUsers.remove(:age => i, :name => "Fake#{i}")
+      DummyUsers.distinct(:name).include?("Fake#{i}").should == false
+      after = DummyUsers.count
+      after.should == before - 1
+      i += 1
+    end
+    DummyUsers.clear_static
+    DummyUsers.clear_virtual    
   end
   
 end

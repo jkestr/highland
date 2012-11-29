@@ -43,7 +43,6 @@ module Highland
 
     def find(*params)
       output = []
-      puts "#{params}"
       if params[0].class != Hash        
         params.each do |id|
           output += objectize(find_db(id))
@@ -101,7 +100,7 @@ module Highland
     # Users.where(:name => 'Chris').remove
     # Users.remove
     def remove(*params)
-      "called remove"
+      delete(*params)
     end 
 
    # private

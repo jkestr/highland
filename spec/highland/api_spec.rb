@@ -202,8 +202,19 @@ describe Highland do
   end
 
   it "should be able to count" do
-    DummyUsers.count.should == "called count"
-    DummyUsers.size.should == "called size"
+    DummyUsers.init_collection(@collection)
+    DummyUsers.clear_static
+    i = 20
+    5.times do
+      DummyUsers.create(:age => i, :name => "Fake")
+      i += 1
+    end
+    DummyUsers.count(:name => 'Fake', :age => 20).should == 1
+    DummyUsers.count(:name => 'Fake').should == 5
+    DummyUsers.count(:age => 21).should == 1
+    DummyUsers.count.should == 5
+    DummyUsers.clear_static
+    DummyUsers.clear_virtual
   end
 
   it "should distinct" do

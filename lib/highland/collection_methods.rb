@@ -26,9 +26,7 @@ module Highland
     # Users.where(:name => 'John')
     def where(*params)
       hash = find_db(*params)
-      #puts "#{hash.keys}"
       output = objectize(hash)
-
       return output
     end
 
@@ -84,10 +82,9 @@ module Highland
       return output
     end
 
-
-
     def count(*params)
-      "called count"
+      return find_db(*params).keys.length if params[0].class == Hash
+      return @vhash.keys.length
     end
 
 

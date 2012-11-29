@@ -92,8 +92,8 @@ module Highland
     end
 
     # Users.distinct(:age) => [26, 29, 28]
-    def distinct(*params)
-      "called distinct"
+    def distinct(column)
+      @vhelper[column.to_s].keys
     end
 
     # Users.fields(:age).find('chris') => {"_id"=>"chris", "age"=>26}

@@ -274,14 +274,14 @@ describe Highland do
       DummyUsers.init_collection(@collection)
       b = DummyUsers.find_db(:age => i, :name => "Fake#{i}").values
       a.should == b
-      before = DummyUsers.count
-      DummyUsers.distinct(:name).include?("Fake#{i}").should == true
-      DummyUsers.remove(:age => i, :name => "Fake#{i}")
-      DummyUsers.distinct(:name).include?("Fake#{i}").should == false
-      after = DummyUsers.count
-      after.should == before - 1
       i += 1
     end
+    before = DummyUsers.count
+    DummyUsers.distinct(:name).include?("Fake25").should == true
+    DummyUsers.remove(:age => 25, :name => "Fake25")
+    DummyUsers.distinct(:name).include?("Fake25").should == false
+    after = DummyUsers.count
+    after.should == before - 1    
     DummyUsers.clear_static
     DummyUsers.clear_virtual    
   end

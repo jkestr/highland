@@ -58,12 +58,11 @@ module Highland
     end
 
     def sort(*params)
-      column = params[0].keys.first if params[0].class == Hash
-      column = params[0] if params[0].class == Symbol
-      if params[0].class == Hash and params[0][column] == "desc"
-        sorted = distinct(column).sort{|x,y| y <=> x}
+      column = (params[0].class == Hash)?(params[0].keys.first):(params[0])
+      sorted = if params[0].class == Hash and params[0][column] == "desc"
+        distinct(column).sort{|x,y| y <=> x}
       else
-        sorted = distinct(column).sort{|x,y| x <=> y}
+        distinct(column).sort{|x,y| x <=> y}
       end
       output = []
       sorted.each {|s| @vhelper[column.to_s][s].each{|id| output += find(id)}}

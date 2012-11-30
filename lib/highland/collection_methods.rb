@@ -44,7 +44,7 @@ module Highland
           [params[0][key]].flatten.each {|el| output = output + all(key => el)}
         end          
       else
-        params.each {|id| output += objectize(find_db(id))}
+        params.each {|id| output += where(id)}
       end
       return output
     end

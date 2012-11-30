@@ -58,33 +58,19 @@ module Highland
     end
 
     def sort(*params)
-      column = get_column(*params)
-      sequence = define_sequence(*params,column)
+      column = params[0].keys.first if params[0].class == Hash
+      column = params[0] if params[0].class == Symbol
+      sequence = "asc"
+      sequence = "desc" if params[0].class == Hash and params[0][column] == "desc"
+      sorted = @vhelper[column.to_s].keys.sort{|x,y| x <=> y} if sequence == "asc"
+      sorted = @vhelper[column.to_s].keys.sort{|x,y| y <=> x} if sequence == "desc"
       output = []
-      get_sorted(column, sequence).each do |s|
+      sorted.each do |s|
         @vhelper[column.to_s][s].each do |id|
           output += find(id)
         end
       end
       return output
-    end
-
-    def get_column(*params)
-      column = params[0].keys.first if params[0].class == Hash
-      column = params[0] if params[0].class == Symbol
-      return column      
-    end
-
-    def define_sequence(*params,column)
-      sequence = "asc"
-      sequence = "desc" if params[0].class == Hash and params[0][column] == "desc"      
-      return sequence
-    end
-
-    def get_sorted(column,sequence)
-      sorted = @vhelper[column.to_s].keys.sort{|x,y| x <=> y} if sequence == "asc"
-      sorted = @vhelper[column.to_s].keys.sort{|x,y| y <=> x} if sequence == "desc"
-      return sorted      
     end
 
     def count(*params)

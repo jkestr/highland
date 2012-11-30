@@ -60,16 +60,13 @@ module Highland
     def sort(*params)
       column = params[0].keys.first if params[0].class == Hash
       column = params[0] if params[0].class == Symbol
-      sequence = "asc"
-      sequence = "desc" if params[0].class == Hash and params[0][column] == "desc"
-      sorted = distinct(column).sort{|x,y| x <=> y} if sequence == "asc"
-      sorted = distinct(column).sort{|x,y| y <=> x} if sequence == "desc"
-      output = []
-      sorted.each do |s|
-        @vhelper[column.to_s][s].each do |id|
-          output += find(id)
-        end
+      if params[0].class == Hash and params[0][column] == "desc"
+        sorted = distinct(column).sort{|x,y| y <=> x}
+      else
+        sorted = distinct(column).sort{|x,y| x <=> y}
       end
+      output = []
+      sorted.each {|s| @vhelper[column.to_s][s].each{|id| output += find(id)}}
       return output
     end
 

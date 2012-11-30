@@ -1,6 +1,7 @@
 ![Highland Logo](https://raw.github.com/mac-r/highland/master/logo.png)
 
 [![Build Status](https://secure.travis-ci.org/mac-r/highland.png)](https://travis-ci.org/mac-r/highland)
+[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/mac-r/highland)
 
 ### Overview:
 

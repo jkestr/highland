@@ -39,22 +39,14 @@ module Highland
 
     def find(*params)
       output = []
-      if params[0].class != Hash        
-        params.each do |id|
-          output += objectize(find_db(id))
-        end
-        return output
-      end
       if params[0].class == Hash
         params[0].each_key do |key|
-          inp = [params[0][key]] if params[0][key].class != Array
-          inp = params[0][key] if params[0][key].class == Array
-          inp.each do |el|
-            output = output + all(key => el)
-          end
-        end  
-        return output
+          [params[0][key]].flatten.each {|el| output = output + all(key => el)}
+        end          
+      else
+        params.each {|id| output += objectize(find_db(id))}
       end
+      return output
     end
 
     def sort(*params)
@@ -62,7 +54,7 @@ module Highland
       sorted = if params[0].class == Hash and params[0][column] == "desc"
         distinct(column).sort{|x,y| y <=> x}
       else
-        distinct(column).sort{|x,y| x <=> y}
+        distinct(column).sort
       end
       output = []
       sorted.each {|s| @vhelper[column.to_s][s].each{|id| output += find(id)}}

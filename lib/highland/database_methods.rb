@@ -90,6 +90,12 @@ module Highland
       @vhash, @vhelper = nil, nil
     end
 
+    def reload_virtual
+      clear_virtual
+      load_vhash(@file)
+      load_vhelper
+    end
+
     def clear_static
       File.truncate(@file, 0)
     end

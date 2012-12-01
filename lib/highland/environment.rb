@@ -3,14 +3,10 @@ COLLECTIONS = ["DummyUsers"]
 
 module Highland
 
-  def self.included(klass)
-    puts "Included #{self} into #{klass}"
-    klass.extend CollectionMethods
-  end
-
   module HighlandEnvironment
     self.extend Highland::HighlandEnvironment
-
+    @@klasses = []
+    @@stringklasses = []
     def load
       load_collections
     end
@@ -46,15 +42,17 @@ module Highland
       end      
     end
 
-    def define_classes(collections)
-      classes = []
+    def define_classes(collections)      
       collections.each do |collection|
-        new_classes = Object.const_set(collection, Class.new)
-        new_classes.extend Highland::CollectionMethods
-        new_classes.extend Highland::DatabaseMethods
-        classes << new_classes
+        if @@klasses.include?(collection) == false
+          new_class = Object.const_set(collection, Class.new)
+          new_class.extend Highland::CollectionMethods
+          new_class.extend Highland::DatabaseMethods
+          @@stringklasses << new_class
+          @@klasses << collection
+        end
       end
-      return classes           
+      return @@stringklasses           
     end
 
     def load_virtuals(classes)

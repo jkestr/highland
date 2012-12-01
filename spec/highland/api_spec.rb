@@ -5,7 +5,8 @@ DB = File.join(File.dirname(__FILE__), "/dummy_dir" )
 
 describe Highland do
   before(:each) do
-    @collection = File.join(File.dirname(__FILE__), "/dummy_dir/db/dummyusers.hl")
+    Highland::HighlandEnvironment.load
+    #@collection = File.join(File.dirname(__FILE__), "/dummy_dir/db/dummyusers.hl")
   end
   
   it "should create new classes" do
@@ -13,25 +14,25 @@ describe Highland do
   end
   
   it "should create one element" do
-    DummyUsers.init_collection(@collection)
+  # DummyUsers.init_collection(@collection)
     a = DummyUsers.create(:age => 26, :name => 'Chris').values
     b = DummyUsers.find_db(:age => 26, :name => 'Chris').values
     a.should == b
-    DummyUsers.clear_virtual
-    DummyUsers.init_collection(@collection)
+    DummyUsers.reload_virtual
+   # DummyUsers.init_collection(@collection)
     c = DummyUsers.find_db(:age => 26, :name => 'Chris').values
     a.should == c
     DummyUsers.clear_static
   end
 
   it "should create many elements" do
-    DummyUsers.init_collection(@collection)
+ #   DummyUsers.init_collection(@collection)
     DummyUsers.clear_static
     i = 20
     15.times do
       a = DummyUsers.create(:age => i, :name => "Fake#{i}").values
-      DummyUsers.clear_virtual
-      DummyUsers.init_collection(@collection)
+      DummyUsers.reload_virtual
+     # DummyUsers.init_collection(@collection)
       b = DummyUsers.find_db(:age => i, :name => "Fake#{i}").values
       a.should == b
       i += 1
@@ -41,7 +42,7 @@ describe Highland do
   end
   
   it "should objectize" do
-    DummyUsers.init_collection(@collection)
+    # DummyUsers.init_collection(@collection)
     DummyUsers.clear_static
     i = 20
     15.times do
@@ -58,7 +59,7 @@ describe Highland do
   end
 
   it "should provide querying with where" do
-    DummyUsers.init_collection(@collection)
+    # DummyUsers.init_collection(@collection)
     DummyUsers.clear_static
     i = 20
     5.times do
@@ -83,7 +84,7 @@ describe Highland do
   end
 
   it "should provide querying with first" do
-    DummyUsers.init_collection(@collection)
+    # DummyUsers.init_collection(@collection)
     DummyUsers.clear_static
     DummyUsers.create(:age => 20, :name => "Fake")
     DummyUsers.first(:name => 'Fake').class.should == HighlandObject
@@ -95,7 +96,7 @@ describe Highland do
   end
 
   it "should provide querying with all" do
-    DummyUsers.init_collection(@collection)
+    # DummyUsers.init_collection(@collection)
     DummyUsers.clear_static
     i = 20
     5.times do
@@ -125,7 +126,7 @@ describe Highland do
   end
 
   it "should be able to find" do
-    DummyUsers.init_collection(@collection)
+    # DummyUsers.init_collection(@collection)
     DummyUsers.clear_static    
     i = 20
     5.times do
@@ -157,10 +158,9 @@ describe Highland do
   end
 
   it "should have vhelper" do
-    DummyUsers.init_collection(@collection)
+    # DummyUsers.init_collection(@collection)
     DummyUsers.clear_static
-    DummyUsers.clear_virtual
-    DummyUsers.init_collection(@collection)
+    DummyUsers.reload_virtual
     i = 20
     5.times do
       DummyUsers.create(:age => i, :name => "Fake")
@@ -174,7 +174,7 @@ describe Highland do
 
 
   it "should be able to sort" do
-    DummyUsers.init_collection(@collection)
+    # DummyUsers.init_collection(@collection)
     DummyUsers.clear_static
     i = 20
     5.times do
@@ -204,10 +204,9 @@ describe Highland do
   end
 
   it "should be able to count" do
-    DummyUsers.init_collection(@collection)
-    DummyUsers.clear_virtual    
+    # DummyUsers.init_collection(@collection)
     DummyUsers.clear_static
-    DummyUsers.init_collection(@collection)    
+    DummyUsers.reload_virtual    
     i = 20
     5.times do
       DummyUsers.create(:age => i, :name => "Fake")
@@ -226,7 +225,7 @@ describe Highland do
   end
 
   it "should distinct" do
-    DummyUsers.init_collection(@collection)
+    # DummyUsers.init_collection(@collection)
     DummyUsers.clear_static
     i = 20
     5.times do
@@ -241,13 +240,12 @@ describe Highland do
   end
 
   it "should update" do
-    DummyUsers.init_collection(@collection)
+    # DummyUsers.init_collection(@collection)
     DummyUsers.clear_static
     i = 20
     15.times do
       a = DummyUsers.create(:age => i, :name => "Fake#{i}").values
-      DummyUsers.clear_virtual
-      DummyUsers.init_collection(@collection)
+      DummyUsers.reload_virtual
       b = DummyUsers.find_db(:age => i, :name => "Fake#{i}").values
       a.should == b
       kid = DummyUsers.first(:age => i, :name => "Fake#{i}").id
@@ -266,13 +264,12 @@ describe Highland do
   end
 
   it "should be able to remove" do
-    DummyUsers.init_collection(@collection)
+    # DummyUsers.init_collection(@collection)
     DummyUsers.clear_static
     i = 20
     15.times do
       a = DummyUsers.create(:age => i, :name => "Fake#{i}").values
-      DummyUsers.clear_virtual
-      DummyUsers.init_collection(@collection)
+      DummyUsers.reload_virtual
       b = DummyUsers.find_db(:age => i, :name => "Fake#{i}").values
       a.should == b
       i += 1
@@ -288,15 +285,15 @@ describe Highland do
   end
   
   it "should clear collection" do
-    DummyUsers.init_collection(@collection)
+    # DummyUsers.init_collection(@collection)
     DummyUsers.clear_static
     i = 20
     10.times do
       DummyUsers.create(:age => i, :name => "Fake#{i}")
     end
     DummyUsers.return_vhash.keys.length.should == 10
-    DummyUsers.clear_static
-    DummyUsers.init_collection(@collection)
+    DummyUsers.clear
+    DummyUsers.reload_virtual
     DummyUsers.return_vhash.keys.length.should == 0
     DummyUsers.clear_virtual        
   end

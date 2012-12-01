@@ -8,4 +8,4 @@ module Highland
   include CollectionMethods  
 end
 
-Highland::HighlandEnvironment.define
+Highland::HighlandEnvironment.load

@@ -1,0 +1,1 @@
+DB_PATH = File.join(File.dirname(__FILE__), "/dummy_dir/" )

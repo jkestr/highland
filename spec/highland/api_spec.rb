@@ -1,4 +1,6 @@
-require File.join(File.dirname(__FILE__), "/../spec_helper" )
+require File.join(File.dirname(__FILE__), "/highland_config")
+require File.join(File.dirname(__FILE__), "/../spec_helper")
+
 DB = File.join(File.dirname(__FILE__), "/dummy_dir" )
 
 describe Highland do

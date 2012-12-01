@@ -90,11 +90,11 @@ module Highland
 
     def objectize(hash)
       output = []      
-      Object.const_set("HighlandObject", Class.new) unless defined?(HighlandObject)
+      build_object
       hash.each_key do |id|        
         o = HighlandObject.new
         o.instance_variable_set(:@id, id)        
-        o.class.send(:define_method, :id) { @id }        
+        o.singleton_class.send(:define_method, :id) { @id }        
         hash[id].each_key do |key|
           instance = "@#{key}"
           o.instance_variable_set(instance.to_sym, hash[id][key]["value"])                  
@@ -103,6 +103,10 @@ module Highland
         output << o
       end
       return output
+    end
+
+    def build_object
+      Object.const_set("HighlandObject", Class.new) unless defined?(HighlandObject)
     end
 
   end

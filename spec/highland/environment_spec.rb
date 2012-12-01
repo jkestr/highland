@@ -12,6 +12,48 @@ describe Highland do
     Highland::HighlandEnvironment.get_collections.sort.should == collections
   end
 
+  it "should create classes" do
+    Dummy.new.class.should == Dummy
+    DummyUsers.new.class.should == DummyUsers
+    Empty.new.class.should == Empty
+  end
+
+  it "should clean db folder from unused collections" do
+    static = ["Qwerty", "Asdfg", "Zxcv"]
+    collections = ["Dummy", "DummyUsers", "Empty"]
+    static.each{|c| File.open(DB_PATH + "db/#{c.downcase}.hl", "w")}
+    Highland::HighlandEnvironment.delete_unused(collections,static)
+    inside = Dir[DB_PATH + "db/*.hl"].map do |file|
+      File.basename(file,".hl").downcase
+    end
+    inside.sort.should == collections.map(&:downcase).sort
+  end
+
+  it "should add static files for new collections" do
+    static = ["Dummy", "DummyUsers", "Empty"]
+    collections = ["Qwerty", "Asdfg", "Zxcv"]
+    Highland::HighlandEnvironment.create_missing(collections, static)
+    inside = Dir[DB_PATH + "db/*.hl"].map do |file|
+      File.basename(file,".hl").downcase
+    end
+    inside.sort.should == (collections+static).map(&:downcase).sort
+    collections.each do |c|
+      File.delete(DB_PATH + "db/#{c.downcase}.hl")
+    end
+  end
+
+    # def create_missing(collections, static)
+    #   collections.each do |c|
+    #     File.open(DB_PATH + "db/#{c.downcase}.hl", "w") if static.include?(c.downcase) == false
+    #   end
+    # end
+
+    # def delete_unused(collections, static)
+    #   static.each do |c|
+    #     File.delete(DB_PATH + "db/#{c.downcase}.hl") if collections.map(&:downcase).include?(c.downcase) == false
+    #   end      
+    # end
+
   # it "should load configuration" do
   #   Highland::HighlandEnvironment.load_config.should == true
   # end

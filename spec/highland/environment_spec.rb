@@ -42,37 +42,13 @@ describe Highland do
     end
   end
 
-    # def create_missing(collections, static)
-    #   collections.each do |c|
-    #     File.open(DB_PATH + "db/#{c.downcase}.hl", "w") if static.include?(c.downcase) == false
-    #   end
-    # end
-
-    # def delete_unused(collections, static)
-    #   static.each do |c|
-    #     File.delete(DB_PATH + "db/#{c.downcase}.hl") if collections.map(&:downcase).include?(c.downcase) == false
-    #   end      
-    # end
-
-  # it "should load configuration" do
-  #   Highland::HighlandEnvironment.load_config.should == true
-  # end
-
-  # it "should get list of collections" do
-  #   Highland::HighlandEnvironment.get_collections.should == true    
-  # end
-
-  # it "should initialize collections" do
-  #   Highland::HighlandEnvironment.init_collections.should == true
-  # end
-
-  # it "should create virtual hash and helper" do
-  # 	Highland::HighlandEnvironment.return_vhashes.should == true
-  #   Highland::HighlandEnvironment.return_vhelpers.should == true
-  # end
-
-  # it "should provide each collection with api" do
-  #   Highland::HighlandEnvironment.return_api.should == true
-  # end
+  it "should build virtual hash and helper for each collection" do
+    Dummy.instance_variable_defined?(:@vhash).should == true
+    DummyUsers.instance_variable_defined?(:@vhash).should == true
+    Empty.instance_variable_defined?(:@vhash).should == true
+    Dummy.instance_variable_defined?(:@vhelper).should == true
+    DummyUsers.instance_variable_defined?(:@vhelper).should == true
+    Empty.instance_variable_defined?(:@vhelper).should == true
+  end
 
 end

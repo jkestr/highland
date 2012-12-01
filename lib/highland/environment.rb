@@ -20,7 +20,8 @@ module Highland
       static = get_static
       create_missing(collections, static)
       delete_unused(collections, static)
-      define_classes(collections)
+      classes = define_classes(collections)
+      load_virtuals(classes)
     end
 
     def get_collections
@@ -46,15 +47,22 @@ module Highland
     end
 
     def define_classes(collections)
+      classes = []
       collections.each do |collection|
-        new_collection = Object.const_set(collection, Class.new)
-        new_collection.extend Highland::CollectionMethods
-        new_collection.extend Highland::DatabaseMethods
-      end           
+        new_classes = Object.const_set(collection, Class.new)
+        new_classes.extend Highland::CollectionMethods
+        new_classes.extend Highland::DatabaseMethods
+        classes << new_classes
+      end
+      return classes           
+    end
+
+    def load_virtuals(classes)
+      classes.each do |klass|
+        target = klass.to_s.downcase
+        klass.init_collection(DB_PATH + "db/#{target}.hl")
+      end
     end
 
   end
 end
-# Dir["*.hl"].each {|file| puts File.basename(file,".hl")}
-      # config = YAML.load_file("#{DIR}/config.yml")
-      # collections = config.keys

@@ -5,7 +5,7 @@ DB = File.join(File.dirname(__FILE__), "/dummy_dir" )
 
 describe Highland do
   before(:each) do
-    @collection = File.join(File.dirname(__FILE__), "/dummy_dir/db/dummyusers.hl" )
+    @collection = File.join(File.dirname(__FILE__), "/dummy_dir/db/dummyusers.hl")
   end
   
   it "should create new classes" do

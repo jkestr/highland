@@ -62,7 +62,7 @@ module Highland
     end
 
     def root?(path)
-      root_objects = ["gemfile", "procfile", "readme"]  
+      root_objects = ["gemfile", "procfile", "readme", ".root"]  
       current_objects = Dir[path + "/*"].map do |file|
         File.basename(file).downcase
       end
@@ -78,7 +78,7 @@ module Highland
     def find_root(path = File.expand_path(File.dirname(__FILE__)))
       path = File.expand_path('..', path) if root?(path) == false
       find_root(path) if root?(path) == false
-      return path + "/highland" if root?(path) == true
+      return path + "/highland_db" if root?(path) == true
     end
     
   end

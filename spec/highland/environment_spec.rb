@@ -51,10 +51,4 @@ describe Highland do
     Empty.instance_variable_defined?(:@vhelper).should == true
   end
 
-  it "should provide each collection with api" do
-    puts Dummy.instance_methods(false)
-    puts DummyUsers.instance_methods(false)
-    puts Empty.instance_methods(false)
-  end
-
 end

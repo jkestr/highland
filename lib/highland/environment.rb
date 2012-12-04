@@ -1,5 +1,4 @@
 require 'yaml'
-COLLECTIONS = ["DummyUsers"]
 
 module Highland
 

@@ -3,7 +3,9 @@ require File.join(File.dirname(__FILE__), "/../spec_helper")
 
 require 'rio'
 describe Highland do
-
+  
+  ##
+  # Is a class for testing purposes.
   class DummyClass
   end
   

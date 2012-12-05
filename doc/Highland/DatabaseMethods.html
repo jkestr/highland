@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>module Highland::DatabaseMethods - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../index.html">Home</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/highland/database_methods.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-clear_static">#clear_static</a>
+    
+    <li><a href="#method-i-clear_virtual">#clear_virtual</a>
+    
+    <li><a href="#method-i-delete">#delete</a>
+    
+    <li><a href="#method-i-find_db">#find_db</a>
+    
+    <li><a href="#method-i-generate_hl">#generate_hl</a>
+    
+    <li><a href="#method-i-init_file">#init_file</a>
+    
+    <li><a href="#method-i-insert_shash">#insert_shash</a>
+    
+    <li><a href="#method-i-insert_vhash">#insert_vhash</a>
+    
+    <li><a href="#method-i-insert_vhelper">#insert_vhelper</a>
+    
+    <li><a href="#method-i-load_vhash">#load_vhash</a>
+    
+    <li><a href="#method-i-load_vhelper">#load_vhelper</a>
+    
+    <li><a href="#method-i-reload_virtual">#reload_virtual</a>
+    
+    <li><a href="#method-i-return_vhash">#return_vhash</a>
+    
+    <li><a href="#method-i-return_vhelper">#return_vhelper</a>
+    
+    <li><a href="#method-i-update_columns">#update_columns</a>
+    
+    <li><a href="#method-i-update_db">#update_db</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../Gemfile.html">Gemfile</a>
+  
+    <li class="file"><a href="../Rakefile.html">Rakefile</a>
+  
+    <li class="file"><a href="../spec/highland/dummy_apps/sinatra/Gemfile.html">Gemfile</a>
+  
+    <li class="file"><a href="../spec/highland/dummy_apps/sinatra/Procfile.html">Procfile</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../Highland.html">Highland</a>
+  
+    <li><a href="../Highland/CollectionMethods.html">Highland::CollectionMethods</a>
+  
+    <li><a href="../Highland/DatabaseMethods.html">Highland::DatabaseMethods</a>
+  
+    <li><a href="../Highland/Environment.html">Highland::Environment</a>
+  
+    <li><a href="../Colors.html">Colors</a>
+  
+    <li><a href="../DummyClass.html">DummyClass</a>
+  
+    <li><a href="../Hash.html">Hash</a>
+  
+    <li><a href="../HighlandObject.html">HighlandObject</a>
+  
+    <li><a href="../Object.html">Object</a>
+  
+    <li><a href="../String.html">String</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module Highland::DatabaseMethods</h1>
+
+  <div id="description" class="description">
+    
+<p><a href="DatabaseMethods.html">DatabaseMethods</a> are not the part of the
+user API. These methods are the fundamentals of the one. They work with
+static hashes and manage virtual ones. It's not recommended to work with
+these methods directly.</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-clear_static" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">clear_static</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Clears static hash (collection).</p>
+          
+
+          
+          <div class="method-source-code" id="clear_static-source">
+            <pre><span class="ruby-comment"># File lib/highland/database_methods.rb, line 129</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">clear_static</span>
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">truncate</span>(<span class="ruby-ivar">@file</span>, <span class="ruby-value">0</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- clear_static-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- clear_static-method -->
+
+    
+      <div id="method-i-clear_virtual" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">clear_virtual</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Clears virtual hash and virtual helper.</p>
+          
+
+          
+          <div class="method-source-code" id="clear_virtual-source">
+            <pre><span class="ruby-comment"># File lib/highland/database_methods.rb, line 115</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">clear_virtual</span>
+  <span class="ruby-ivar">@vhash</span>, <span class="ruby-ivar">@vhelper</span> = {}, {}
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- clear_virtual-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- clear_virtual-method -->
+
+    
+      <div id="method-i-delete" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">delete</span><span
+            class="method-args">(*query)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Deletes element from collection.</p>
+          
+
+          
+          <div class="method-source-code" id="delete-source">
+            <pre><span class="ruby-comment"># File lib/highland/database_methods.rb, line 135</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">delete</span>(*<span class="ruby-identifier">query</span>)
+  <span class="ruby-identifier">find_db</span>(*<span class="ruby-identifier">query</span>).<span class="ruby-identifier">each_key</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">id</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@vhash</span>.<span class="ruby-identifier">remove!</span>(<span class="ruby-identifier">id</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">load_vhelper</span>
+  <span class="ruby-identifier">clear_static</span>
+  <span class="ruby-identifier">insert_shash</span>(<span class="ruby-ivar">@vhash</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- delete-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- delete-method -->
+
+    
+      <div id="method-i-find_db" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find_db</span><span
+            class="method-args">(*query)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Finds hash elements according to the query.</p>
+          
+
+          
+          <div class="method-source-code" id="find_db-source">
+            <pre><span class="ruby-comment"># File lib/highland/database_methods.rb, line 79</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">find_db</span>(*<span class="ruby-identifier">query</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">query</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Fixnum</span>
+    <span class="ruby-identifier">id</span> = <span class="ruby-identifier">query</span>[<span class="ruby-value">0</span>]
+    <span class="ruby-identifier">output</span> = {}
+    <span class="ruby-identifier">output</span>[<span class="ruby-identifier">id</span>] = <span class="ruby-ivar">@vhash</span>[<span class="ruby-identifier">id</span>] <span class="ruby-keyword">if</span> <span class="ruby-ivar">@vhash</span>[<span class="ruby-identifier">id</span>] <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">output</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">query</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Hash</span>
+    <span class="ruby-identifier">q</span> = <span class="ruby-identifier">query</span>[<span class="ruby-value">0</span>]
+    <span class="ruby-identifier">ids</span> = []
+    <span class="ruby-identifier">q</span>.<span class="ruby-identifier">each_key</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">column</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">ids</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@vhelper</span>[<span class="ruby-identifier">column</span>.<span class="ruby-identifier">to_s</span>][<span class="ruby-identifier">q</span>[<span class="ruby-identifier">column</span>]]
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">res</span> = <span class="ruby-identifier">ids</span>.<span class="ruby-identifier">inject</span>(<span class="ruby-identifier">ids</span>.<span class="ruby-identifier">first</span>){ <span class="ruby-operator">|</span><span class="ruby-identifier">sim</span>,<span class="ruby-identifier">cur</span><span class="ruby-operator">|</span> <span class="ruby-identifier">sim</span> &amp; <span class="ruby-identifier">cur</span> }
+    <span class="ruby-keyword">return</span> {} <span class="ruby-keyword">if</span> <span class="ruby-identifier">res</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Array</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">res</span> <span class="ruby-operator">==</span> []
+    <span class="ruby-identifier">output</span> = {}
+    <span class="ruby-identifier">res</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">id</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@vhash</span>[<span class="ruby-identifier">id</span>] <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>
+      <span class="ruby-identifier">output</span>[<span class="ruby-identifier">id</span>] = <span class="ruby-ivar">@vhash</span>[<span class="ruby-identifier">id</span>]
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">output</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- find_db-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- find_db-method -->
+
+    
+      <div id="method-i-generate_hl" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">generate_hl</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates static hash in the database folder.</p>
+          
+
+          
+          <div class="method-source-code" id="generate_hl-source">
+            <pre><span class="ruby-comment"># File lib/highland/database_methods.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">generate_hl</span>
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@file</span>, <span class="ruby-string">&quot;w&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- generate_hl-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- generate_hl-method -->
+
+    
+      <div id="method-i-init_file" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">init_file</span><span
+            class="method-args">(shash)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Defines @file instance variable.</p>
+          
+
+          
+          <div class="method-source-code" id="init_file-source">
+            <pre><span class="ruby-comment"># File lib/highland/database_methods.rb, line 15</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">init_file</span>(<span class="ruby-identifier">shash</span>)
+    <span class="ruby-ivar">@file</span> = <span class="ruby-identifier">shash</span>
+<span class="ruby-identifier">generate_hl</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-ivar">@file</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span></pre>
+          </div><!-- init_file-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- init_file-method -->
+
+    
+      <div id="method-i-insert_shash" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">insert_shash</span><span
+            class="method-args">(element)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Inserts hash element into the static hash.</p>
+          
+
+          
+          <div class="method-source-code" id="insert_shash-source">
+            <pre><span class="ruby-comment"># File lib/highland/database_methods.rb, line 105</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">insert_shash</span>(<span class="ruby-identifier">element</span>)
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@file</span>, <span class="ruby-string">'a'</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">element</span>.<span class="ruby-identifier">each_key</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">id</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">file</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{id} =&gt; #{element[id]},&quot;</span>
+    <span class="ruby-keyword">end</span>        
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- insert_shash-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- insert_shash-method -->
+
+    
+      <div id="method-i-insert_vhash" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">insert_vhash</span><span
+            class="method-args">(element)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Inserts hash element into the virtual hash.</p>
+          
+
+          
+          <div class="method-source-code" id="insert_vhash-source">
+            <pre><span class="ruby-comment"># File lib/highland/database_methods.rb, line 57</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">insert_vhash</span>(<span class="ruby-identifier">element</span>)
+  <span class="ruby-identifier">element</span>.<span class="ruby-identifier">each_key</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@vhash</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-identifier">element</span>[<span class="ruby-identifier">key</span>]
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- insert_vhash-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- insert_vhash-method -->
+
+    
+      <div id="method-i-insert_vhelper" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">insert_vhelper</span><span
+            class="method-args">(element)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Inserts hash element into the virtual helper.</p>
+          
+
+          
+          <div class="method-source-code" id="insert_vhelper-source">
+            <pre><span class="ruby-comment"># File lib/highland/database_methods.rb, line 65</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">insert_vhelper</span>(<span class="ruby-identifier">element</span>)
+  <span class="ruby-identifier">element</span>.<span class="ruby-identifier">each_key</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">id</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">element</span>[<span class="ruby-identifier">id</span>].<span class="ruby-identifier">each_key</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">column</span><span class="ruby-operator">|</span>
+      <span class="ruby-ivar">@vhelper</span>[<span class="ruby-identifier">column</span>] <span class="ruby-operator">||=</span> {}
+      <span class="ruby-identifier">item</span> = <span class="ruby-identifier">element</span>[<span class="ruby-identifier">id</span>][<span class="ruby-identifier">column</span>][<span class="ruby-string">&quot;value&quot;</span>]
+      <span class="ruby-ivar">@vhelper</span>[<span class="ruby-identifier">column</span>][<span class="ruby-identifier">item</span>] <span class="ruby-operator">||=</span> []
+      <span class="ruby-ivar">@vhelper</span>[<span class="ruby-identifier">column</span>][<span class="ruby-identifier">item</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">id</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">update_columns</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- insert_vhelper-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- insert_vhelper-method -->
+
+    
+      <div id="method-i-load_vhash" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">load_vhash</span><span
+            class="method-args">(shash)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Loads virtual hash.</p>
+          
+
+          
+          <div class="method-source-code" id="load_vhash-source">
+            <pre><span class="ruby-comment"># File lib/highland/database_methods.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">load_vhash</span>(<span class="ruby-identifier">shash</span>)
+  <span class="ruby-identifier">init_file</span>(<span class="ruby-identifier">shash</span>)
+  <span class="ruby-identifier">data</span> = <span class="ruby-node">&quot;{#{rio(@file).contents}}&quot;</span>
+  <span class="ruby-ivar">@vhash</span> = <span class="ruby-identifier">eval</span>(<span class="ruby-identifier">data</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- load_vhash-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- load_vhash-method -->
+
+    
+      <div id="method-i-load_vhelper" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">load_vhelper</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Loads virtual helper.</p>
+          
+
+          
+          <div class="method-source-code" id="load_vhelper-source">
+            <pre><span class="ruby-comment"># File lib/highland/database_methods.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">load_vhelper</span>
+  <span class="ruby-ivar">@vhelper</span> = {}
+  <span class="ruby-ivar">@vhash</span>.<span class="ruby-identifier">each_key</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">id</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@vhash</span>[<span class="ruby-identifier">id</span>].<span class="ruby-identifier">each_key</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">column</span><span class="ruby-operator">|</span>
+      <span class="ruby-ivar">@vhelper</span>[<span class="ruby-identifier">column</span>] <span class="ruby-operator">||=</span> {}
+      <span class="ruby-identifier">item</span> = <span class="ruby-ivar">@vhash</span>[<span class="ruby-identifier">id</span>][<span class="ruby-identifier">column</span>][<span class="ruby-string">&quot;value&quot;</span>]
+      <span class="ruby-ivar">@vhelper</span>[<span class="ruby-identifier">column</span>][<span class="ruby-identifier">item</span>] <span class="ruby-operator">||=</span> []
+      <span class="ruby-ivar">@vhelper</span>[<span class="ruby-identifier">column</span>][<span class="ruby-identifier">item</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">id</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">update_columns</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- load_vhelper-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- load_vhelper-method -->
+
+    
+      <div id="method-i-reload_virtual" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reload_virtual</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Reloads virtual hash and virtual helper.</p>
+          
+
+          
+          <div class="method-source-code" id="reload_virtual-source">
+            <pre><span class="ruby-comment"># File lib/highland/database_methods.rb, line 121</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">reload_virtual</span>
+  <span class="ruby-identifier">clear_virtual</span>
+  <span class="ruby-identifier">load_vhash</span>(<span class="ruby-ivar">@file</span>)
+  <span class="ruby-identifier">load_vhelper</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- reload_virtual-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- reload_virtual-method -->
+
+    
+      <div id="method-i-return_vhash" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">return_vhash</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns virtual hash.</p>
+          
+
+          
+          <div class="method-source-code" id="return_vhash-source">
+            <pre><span class="ruby-comment"># File lib/highland/database_methods.rb, line 161</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">return_vhash</span>
+  <span class="ruby-ivar">@vhash</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- return_vhash-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- return_vhash-method -->
+
+    
+      <div id="method-i-return_vhelper" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">return_vhelper</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns virtual helper.</p>
+          
+
+          
+          <div class="method-source-code" id="return_vhelper-source">
+            <pre><span class="ruby-comment"># File lib/highland/database_methods.rb, line 167</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">return_vhelper</span>
+  <span class="ruby-ivar">@vhelper</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- return_vhelper-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- return_vhelper-method -->
+
+    
+      <div id="method-i-update_columns" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_columns</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Assigns the latest information about columns the @columns.</p>
+          
+
+          
+          <div class="method-source-code" id="update_columns-source">
+            <pre><span class="ruby-comment"># File lib/highland/database_methods.rb, line 36</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update_columns</span>
+  <span class="ruby-ivar">@columns</span> = <span class="ruby-ivar">@vhelper</span>.<span class="ruby-identifier">keys</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- update_columns-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- update_columns-method -->
+
+    
+      <div id="method-i-update_db" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_db</span><span
+            class="method-args">(*query)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Updates element.</p>
+          
+
+          
+          <div class="method-source-code" id="update_db-source">
+            <pre><span class="ruby-comment"># File lib/highland/database_methods.rb, line 147</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update_db</span>(*<span class="ruby-identifier">query</span>)
+  <span class="ruby-identifier">id</span> = <span class="ruby-identifier">query</span>[<span class="ruby-value">0</span>][<span class="ruby-value">:id</span>]
+  <span class="ruby-identifier">query</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">each_key</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">key</span> <span class="ruby-operator">==</span> <span class="ruby-value">:id</span>
+    <span class="ruby-ivar">@vhash</span>[<span class="ruby-identifier">id</span>][<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>][<span class="ruby-string">&quot;value&quot;</span>] = <span class="ruby-identifier">query</span>[<span class="ruby-value">0</span>][<span class="ruby-identifier">key</span>] <span class="ruby-keyword">if</span> <span class="ruby-ivar">@vhash</span>[<span class="ruby-identifier">id</span>].<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">load_vhelper</span>
+  <span class="ruby-identifier">clear_static</span>
+  <span class="ruby-identifier">insert_shash</span>(<span class="ruby-ivar">@vhash</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>      
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- update_db-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- update_db-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

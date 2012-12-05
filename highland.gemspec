@@ -15,7 +15,9 @@ Gem::Specification.new do |s|
                    "lib/highland/database_methods.rb",
                    "lib/highland/environment.rb",
                    "lib/highland/highland.rb",
-                   "README.md"]
+                   "README.md",
+                   "spec/",
+                   "doc/"]
   s.homepage    = 'http://github.com/mac-r/highland'
   s.add_dependency("rio")
   s.add_dependency("gli")

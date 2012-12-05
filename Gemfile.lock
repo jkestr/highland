@@ -26,5 +26,6 @@ PLATFORMS
 DEPENDENCIES
   gli
   rake
+  rdoc
   rio
   rspec

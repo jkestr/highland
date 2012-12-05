@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>module Highland::Environment - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../index.html">Home</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/highland/environment.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-build">#build</a>
+    
+    <li><a href="#method-i-create_missing">#create_missing</a>
+    
+    <li><a href="#method-i-define_classes">#define_classes</a>
+    
+    <li><a href="#method-i-delete_unused">#delete_unused</a>
+    
+    <li><a href="#method-i-expander">#expander</a>
+    
+    <li><a href="#method-i-find_root">#find_root</a>
+    
+    <li><a href="#method-i-get_collections">#get_collections</a>
+    
+    <li><a href="#method-i-get_static">#get_static</a>
+    
+    <li><a href="#method-i-load">#load</a>
+    
+    <li><a href="#method-i-load_collections">#load_collections</a>
+    
+    <li><a href="#method-i-load_virtuals">#load_virtuals</a>
+    
+    <li><a href="#method-i-root-3F">#root?</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../Gemfile.html">Gemfile</a>
+  
+    <li class="file"><a href="../Rakefile.html">Rakefile</a>
+  
+    <li class="file"><a href="../spec/highland/dummy_apps/sinatra/Gemfile.html">Gemfile</a>
+  
+    <li class="file"><a href="../spec/highland/dummy_apps/sinatra/Procfile.html">Procfile</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../Highland.html">Highland</a>
+  
+    <li><a href="../Highland/CollectionMethods.html">Highland::CollectionMethods</a>
+  
+    <li><a href="../Highland/DatabaseMethods.html">Highland::DatabaseMethods</a>
+  
+    <li><a href="../Highland/Environment.html">Highland::Environment</a>
+  
+    <li><a href="../Colors.html">Colors</a>
+  
+    <li><a href="../DummyClass.html">DummyClass</a>
+  
+    <li><a href="../Hash.html">Hash</a>
+  
+    <li><a href="../HighlandObject.html">HighlandObject</a>
+  
+    <li><a href="../Object.html">Object</a>
+  
+    <li><a href="../String.html">String</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module Highland::Environment</h1>
+
+  <div id="description" class="description">
+    
+<p><a href="Environment.html">Environment</a> is the initial set of methods,
+which gets loaded after you include highland in your file. It depends on
+the set of static files inside highland_db folder. If you write "require
+'highland'" in your file and noothing works then it means that you didn't
+initialize your database in the folder of your application ($ highland
+init).</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-build" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">build</span><span
+            class="method-args">(file)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Build is an alternative for load method. Allows you to redefine class
+variable. It’s not recommended to use this method.</p>
+          
+
+          
+          <div class="method-source-code" id="build-source">
+            <pre><span class="ruby-comment"># File lib/highland/environment.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">build</span>(<span class="ruby-identifier">file</span>)
+  <span class="ruby-identifier">@@db_path</span> = <span class="ruby-identifier">find_root</span>(<span class="ruby-identifier">expander</span>(<span class="ruby-identifier">file</span>)) <span class="ruby-keyword">if</span> <span class="ruby-keyword">defined?</span>(<span class="ruby-constant">DB_PATH</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">load_collections</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- build-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- build-method -->
+
+    
+      <div id="method-i-create_missing" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_missing</span><span
+            class="method-args">(collections, static)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates all the missing static hashes, which are mentioned in manifesto.</p>
+          
+
+          
+          <div class="method-source-code" id="create_missing-source">
+            <pre><span class="ruby-comment"># File lib/highland/environment.rb, line 67</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_missing</span>(<span class="ruby-identifier">collections</span>, <span class="ruby-identifier">static</span>)
+  <span class="ruby-identifier">collections</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">@@db_path</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot;db/#{c.downcase}.hl&quot;</span>, <span class="ruby-string">&quot;w&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">static</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">c</span>.<span class="ruby-identifier">downcase</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- create_missing-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- create_missing-method -->
+
+    
+      <div id="method-i-define_classes" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">define_classes</span><span
+            class="method-args">(collections)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates classes for relevant collections and provides them with API.</p>
+          
+
+          
+          <div class="method-source-code" id="define_classes-source">
+            <pre><span class="ruby-comment"># File lib/highland/environment.rb, line 83</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">define_classes</span>(<span class="ruby-identifier">collections</span>)      
+  <span class="ruby-identifier">collections</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">collection</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">@@klasses</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">collection</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>
+      <span class="ruby-identifier">new_class</span> = <span class="ruby-constant">Object</span>.<span class="ruby-identifier">const_set</span>(<span class="ruby-identifier">collection</span>, <span class="ruby-constant">Class</span>.<span class="ruby-identifier">new</span>)
+      <span class="ruby-identifier">new_class</span>.<span class="ruby-identifier">extend</span> <span class="ruby-constant">Highland</span><span class="ruby-operator">::</span><span class="ruby-constant">CollectionMethods</span>
+      <span class="ruby-identifier">new_class</span>.<span class="ruby-identifier">extend</span> <span class="ruby-constant">Highland</span><span class="ruby-operator">::</span><span class="ruby-constant">DatabaseMethods</span>
+      <span class="ruby-identifier">@@stringklasses</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">new_class</span>
+      <span class="ruby-identifier">@@klasses</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">collection</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">@@stringklasses</span>           
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- define_classes-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- define_classes-method -->
+
+    
+      <div id="method-i-delete_unused" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">delete_unused</span><span
+            class="method-args">(collections, static)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Deletes all static collections, which are not mentioned in the manifesto.</p>
+          
+
+          
+          <div class="method-source-code" id="delete_unused-source">
+            <pre><span class="ruby-comment"># File lib/highland/environment.rb, line 75</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">delete_unused</span>(<span class="ruby-identifier">collections</span>, <span class="ruby-identifier">static</span>)
+  <span class="ruby-identifier">static</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">@@db_path</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot;db/#{c.downcase}.hl&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">collections</span>.<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:downcase</span>).<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">c</span>.<span class="ruby-identifier">downcase</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>      
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- delete_unused-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- delete_unused-method -->
+
+    
+      <div id="method-i-expander" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">expander</span><span
+            class="method-args">(file)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Expands the path of input file.</p>
+          
+
+          
+          <div class="method-source-code" id="expander-source">
+            <pre><span class="ruby-comment"># File lib/highland/environment.rb, line 123</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">expander</span>(<span class="ruby-identifier">file</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-identifier">file</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- expander-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- expander-method -->
+
+    
+      <div id="method-i-find_root" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find_root</span><span
+            class="method-args">(path)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Recursive method, which tries to find the application root.</p>
+          
+
+          
+          <div class="method-source-code" id="find_root-source">
+            <pre><span class="ruby-comment"># File lib/highland/environment.rb, line 129</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">find_root</span>(<span class="ruby-identifier">path</span>)
+  <span class="ruby-identifier">path</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-string">'..'</span>, <span class="ruby-identifier">path</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">root?</span>(<span class="ruby-identifier">path</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-identifier">find_root</span>(<span class="ruby-identifier">path</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">root?</span>(<span class="ruby-identifier">path</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/highland_db/&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">root?</span>(<span class="ruby-identifier">path</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- find_root-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- find_root-method -->
+
+    
+      <div id="method-i-get_collections" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_collections</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Gets names of collections from manifesto.yml.</p>
+          
+
+          
+          <div class="method-source-code" id="get_collections-source">
+            <pre><span class="ruby-comment"># File lib/highland/environment.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_collections</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-constant">YAML</span>.<span class="ruby-identifier">load_file</span>(<span class="ruby-identifier">@@db_path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;manifesto.yml&quot;</span>)[<span class="ruby-string">&quot;collections&quot;</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_collections-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_collections-method -->
+
+    
+      <div id="method-i-get_static" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_static</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Gets all static hashes (collections) from the database folder.</p>
+          
+
+          
+          <div class="method-source-code" id="get_static-source">
+            <pre><span class="ruby-comment"># File lib/highland/environment.rb, line 59</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_static</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">@@db_path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;db/*.hl&quot;</span>].<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">file</span>,<span class="ruby-string">&quot;.hl&quot;</span>).<span class="ruby-identifier">downcase</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_static-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_static-method -->
+
+    
+      <div id="method-i-load" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">load</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Load initializes the class variable @@db_path and loads collections. You
+shouldn’t call this method. It’s done automatically. If you want to specify
+the path to your database - write custom path in DB_PATH before “require
+‘highland’”.</p>
+          
+
+          
+          <div class="method-source-code" id="load-source">
+            <pre><span class="ruby-comment"># File lib/highland/environment.rb, line 23</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">load</span>
+  <span class="ruby-identifier">@@db_path</span> = <span class="ruby-identifier">find_root</span>(<span class="ruby-constant">Dir</span><span class="ruby-operator">::</span><span class="ruby-identifier">pwd</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">defined?</span>(<span class="ruby-constant">DB_PATH</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">@@db_path</span> = <span class="ruby-constant">DB_PATH</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">defined?</span>(<span class="ruby-constant">DB_PATH</span>) <span class="ruby-operator">==</span> <span class="ruby-string">&quot;constant&quot;</span>
+  <span class="ruby-identifier">load_collections</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- load-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- load-method -->
+
+    
+      <div id="method-i-load_collections" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">load_collections</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Gets the list of static collections, compares it with the manifesto.yml. If
+manifesto.yml doesn’t include some static collections - this collections
+get deleted. If manifesto.yml has collections which do not exist then these
+collections are automatically created. After this - virtual hashes are
+loaded.</p>
+          
+
+          
+          <div class="method-source-code" id="load_collections-source">
+            <pre><span class="ruby-comment"># File lib/highland/environment.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">load_collections</span>   
+  <span class="ruby-identifier">collections</span> = <span class="ruby-identifier">get_collections</span>
+  <span class="ruby-identifier">static</span> = <span class="ruby-identifier">get_static</span>
+  <span class="ruby-identifier">create_missing</span>(<span class="ruby-identifier">collections</span>, <span class="ruby-identifier">static</span>)
+  <span class="ruby-identifier">delete_unused</span>(<span class="ruby-identifier">collections</span>, <span class="ruby-identifier">static</span>)
+  <span class="ruby-identifier">classes</span> = <span class="ruby-identifier">define_classes</span>(<span class="ruby-identifier">collections</span>)
+  <span class="ruby-identifier">load_virtuals</span>(<span class="ruby-identifier">classes</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- load_collections-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- load_collections-method -->
+
+    
+      <div id="method-i-load_virtuals" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">load_virtuals</span><span
+            class="method-args">(classes)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Loads virtual hash and virtual helper for each collection.</p>
+          
+
+          
+          <div class="method-source-code" id="load_virtuals-source">
+            <pre><span class="ruby-comment"># File lib/highland/environment.rb, line 98</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">load_virtuals</span>(<span class="ruby-identifier">classes</span>)
+  <span class="ruby-identifier">classes</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">klass</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">target</span> = <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>
+    <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">init_collection</span>(<span class="ruby-identifier">@@db_path</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot;db/#{target}.hl&quot;</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- load_virtuals-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- load_virtuals-method -->
+
+    
+      <div id="method-i-root-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">root?</span><span
+            class="method-args">(path)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if the input path is the application root.</p>
+          
+
+          
+          <div class="method-source-code" id="root-3F-source">
+            <pre><span class="ruby-comment"># File lib/highland/environment.rb, line 107</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">root?</span>(<span class="ruby-identifier">path</span>)
+  <span class="ruby-identifier">root_objects</span> = [<span class="ruby-string">&quot;gemfile&quot;</span>, <span class="ruby-string">&quot;procfile&quot;</span>, <span class="ruby-string">&quot;readme&quot;</span>, <span class="ruby-string">&quot;root&quot;</span>]  
+  <span class="ruby-identifier">current_objects</span> = <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/*&quot;</span>].<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">file</span>).<span class="ruby-identifier">downcase</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">dir</span> = <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-identifier">current_objects</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">co</span><span class="ruby-operator">|</span> 
+     <span class="ruby-identifier">dir</span> = (<span class="ruby-identifier">root_objects</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">co</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>)<span class="ruby-operator">?</span> <span class="ruby-string">&quot;ROOT&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;NOT ROOT&quot;</span>
+     <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">dir</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;ROOT&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">dir</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;ROOT&quot;</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">dir</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;NOT ROOT&quot;</span>  
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- root-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- root-3F-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

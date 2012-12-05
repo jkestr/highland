@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class Object - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>bin/highland
+    <li>spec/highland/dummy_apps/sinatra/folder/file_in_the_folder.rb
+    <li>spec/highland/highland_config.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">BasicObject
+  
+</nav>
+
+    <!-- Included Modules -->
+<nav id="includes-section" class="section">
+  <h3 class="section-header">Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><span class="include">GLI::App</span>
+  
+  
+  </ul>
+</nav>
+
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-find_root">#find_root</a>
+    
+    <li><a href="#method-i-help">#help</a>
+    
+    <li><a href="#method-i-root-3F">#root?</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./Gemfile.html">Gemfile</a>
+  
+    <li class="file"><a href="./Rakefile.html">Rakefile</a>
+  
+    <li class="file"><a href="./spec/highland/dummy_apps/sinatra/Gemfile.html">Gemfile</a>
+  
+    <li class="file"><a href="./spec/highland/dummy_apps/sinatra/Procfile.html">Procfile</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Highland.html">Highland</a>
+  
+    <li><a href="./Highland/CollectionMethods.html">Highland::CollectionMethods</a>
+  
+    <li><a href="./Highland/DatabaseMethods.html">Highland::DatabaseMethods</a>
+  
+    <li><a href="./Highland/Environment.html">Highland::Environment</a>
+  
+    <li><a href="./Colors.html">Colors</a>
+  
+    <li><a href="./DummyClass.html">DummyClass</a>
+  
+    <li><a href="./Hash.html">Hash</a>
+  
+    <li><a href="./HighlandObject.html">HighlandObject</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./String.html">String</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class Object</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="DB_PATH">DB_PATH
+        
+        <dd class="description">
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-find_root" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find_root</span><span
+            class="method-args">(path = File.expand_path(File.dirname(__FILE__)))</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="find_root-source">
+            <pre><span class="ruby-comment"># File spec/highland/dummy_apps/sinatra/folder/file_in_the_folder.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">find_root</span>(<span class="ruby-identifier">path</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-keyword">__FILE__</span>)))
+  <span class="ruby-identifier">path</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-string">'..'</span>, <span class="ruby-identifier">path</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">root?</span>(<span class="ruby-identifier">path</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-identifier">find_root</span>(<span class="ruby-identifier">path</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">root?</span>(<span class="ruby-identifier">path</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">path</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">root?</span>(<span class="ruby-identifier">path</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- find_root-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- find_root-method -->
+
+    
+      <div id="method-i-help" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">help</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the version of <a href="Highland.html">Highland</a>, further it
+should return the list of commands and examples of HighlandDB API.</p>
+          
+
+          
+          <div class="method-source-code" id="help-source">
+            <pre><span class="ruby-comment"># File bin/highland, line 33</span>
+<span class="ruby-identifier">command</span> <span class="ruby-value">:help</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">c</span>.<span class="ruby-identifier">action</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">global_options</span>,<span class="ruby-identifier">options</span>,<span class="ruby-identifier">args</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Highland v. 0.0.1&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-comment">##</span>
+<span class="ruby-comment"># Creates new database in the </span>
+<span class="ruby-identifier">command</span> <span class="ruby-value">:init</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">c</span>.<span class="ruby-identifier">action</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">global_options</span>,<span class="ruby-identifier">options</span>,<span class="ruby-identifier">args</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Highland: init called!&quot;</span>.<span class="ruby-identifier">color</span>(<span class="ruby-constant">Colors</span><span class="ruby-operator">::</span><span class="ruby-constant">GREEN</span>)
+    <span class="ruby-identifier">db_root</span> = <span class="ruby-constant">Dir</span><span class="ruby-operator">::</span><span class="ruby-identifier">pwd</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/highland_db/&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">db_root</span>
+    <span class="ruby-identifier">exec_root</span> = <span class="ruby-constant">Dir</span><span class="ruby-operator">::</span><span class="ruby-identifier">pwd</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-constant">Dir</span><span class="ruby-operator">::</span><span class="ruby-identifier">mkdir</span>(<span class="ruby-identifier">db_root</span>)
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;\tcreated highland root&quot;</span>
+     <span class="ruby-keyword">rescue</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-string">&quot;Highland: couldn't create the database!&quot;</span>.<span class="ruby-identifier">color</span>(<span class="ruby-constant">Colors</span><span class="ruby-operator">::</span><span class="ruby-constant">RED</span>)
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># creating directories</span>
+    <span class="ruby-constant">Dir</span><span class="ruby-operator">::</span><span class="ruby-identifier">mkdir</span>(<span class="ruby-node">&quot;#{db_root}/db&quot;</span>)
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;\tprepared db folder&quot;</span>
+
+    <span class="ruby-comment"># creating files</span>
+    <span class="ruby-identifier">manifesto_content</span> = <span class="ruby-string">&quot;collections:\n&quot;</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-node">&quot;#{db_root}/manifesto.yml&quot;</span>, <span class="ruby-string">'w'</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">manifesto_content</span>) }
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;\tprepared Manifesto&quot;</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-node">&quot;#{exec_root}/root&quot;</span>, <span class="ruby-string">'w'</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&quot;Highland dependency!&quot;</span>) }
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;\tprepared root file&quot;</span>
+
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">exit</span> <span class="ruby-identifier">run</span>(<span class="ruby-constant">ARGV</span>)
+
+
+</pre>
+          </div><!-- help-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- help-method -->
+
+    
+      <div id="method-i-root-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">root?</span><span
+            class="method-args">(path)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="root-3F-source">
+            <pre><span class="ruby-comment"># File spec/highland/dummy_apps/sinatra/folder/file_in_the_folder.rb, line 3</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">root?</span>(<span class="ruby-identifier">path</span>)
+  <span class="ruby-identifier">root_objects</span> = [<span class="ruby-string">&quot;gemfile&quot;</span>, <span class="ruby-string">&quot;procfile&quot;</span>, <span class="ruby-string">&quot;readme&quot;</span>]  
+  <span class="ruby-identifier">current_objects</span> = <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/*&quot;</span>].<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">file</span>).<span class="ruby-identifier">downcase</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">dir</span> = <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-identifier">current_objects</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">co</span><span class="ruby-operator">|</span> 
+     <span class="ruby-identifier">dir</span> = (<span class="ruby-identifier">root_objects</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">co</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>)<span class="ruby-operator">?</span> <span class="ruby-string">&quot;ROOT&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;NOT ROOT&quot;</span>
+     <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">dir</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;ROOT&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">dir</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;ROOT&quot;</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">dir</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;NOT ROOT&quot;</span>  
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- root-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- root-3F-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

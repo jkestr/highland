@@ -4,6 +4,8 @@ require 'gli'
 include GLI::App
 require 'rio'
 
+##
+# This are console colors.
 class Colors
   COLOR1 = "\e[1;36;40m"
   COLOR2 = "\e[1;35;40m"
@@ -21,16 +23,23 @@ class String
   end
 end
 
+##
+# This is an executable file, 
+# which includes all coomands available from the terminal.
+
+##
+# Returns the version of Highland, further it should return
+# the list of commands and examples of HighlandDB API.
 command :help do |c|
   c.action do |global_options,options,args|
     puts "Highland v. 0.0.1"
   end
 end
 
-# generating new application
+##
+# Creates new database in the 
 command :init do |c|
   c.action do |global_options,options,args|
-   # raise TypeError, 'Highland: something went wrong!'.color(Colors::RED)
     puts "Highland: init called!".color(Colors::GREEN)
     db_root = Dir::pwd + "/highland_db/"
     puts db_root

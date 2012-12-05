@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>module Highland::CollectionMethods - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../index.html">Home</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/highland/collection_methods.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-all">#all</a>
+    
+    <li><a href="#method-i-build_object">#build_object</a>
+    
+    <li><a href="#method-i-clear">#clear</a>
+    
+    <li><a href="#method-i-count">#count</a>
+    
+    <li><a href="#method-i-create">#create</a>
+    
+    <li><a href="#method-i-distinct">#distinct</a>
+    
+    <li><a href="#method-i-find">#find</a>
+    
+    <li><a href="#method-i-first">#first</a>
+    
+    <li><a href="#method-i-init_collection">#init_collection</a>
+    
+    <li><a href="#method-i-objectize">#objectize</a>
+    
+    <li><a href="#method-i-remove">#remove</a>
+    
+    <li><a href="#method-i-size">#size</a>
+    
+    <li><a href="#method-i-sort">#sort</a>
+    
+    <li><a href="#method-i-update">#update</a>
+    
+    <li><a href="#method-i-where">#where</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../Gemfile.html">Gemfile</a>
+  
+    <li class="file"><a href="../Rakefile.html">Rakefile</a>
+  
+    <li class="file"><a href="../spec/highland/dummy_apps/sinatra/Gemfile.html">Gemfile</a>
+  
+    <li class="file"><a href="../spec/highland/dummy_apps/sinatra/Procfile.html">Procfile</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../Highland.html">Highland</a>
+  
+    <li><a href="../Highland/CollectionMethods.html">Highland::CollectionMethods</a>
+  
+    <li><a href="../Highland/DatabaseMethods.html">Highland::DatabaseMethods</a>
+  
+    <li><a href="../Highland/Environment.html">Highland::Environment</a>
+  
+    <li><a href="../Colors.html">Colors</a>
+  
+    <li><a href="../DummyClass.html">DummyClass</a>
+  
+    <li><a href="../Hash.html">Hash</a>
+  
+    <li><a href="../HighlandObject.html">HighlandObject</a>
+  
+    <li><a href="../Object.html">Object</a>
+  
+    <li><a href="../String.html">String</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module Highland::CollectionMethods</h1>
+
+  <div id="description" class="description">
+    
+<p><a href="CollectionMethods.html">CollectionMethods</a> are mostly the API
+of <a href="../Highland.html">Highland</a>. Methods marked with "API:" are
+the ones, which are recommended to use day by day.</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-all" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">all</span><span
+            class="method-args">(*params)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>API: Returns all elements from the collection, you can also specify details
+of your request. Look at examples below</p>
+<dl class="rdoc-list label-list"><dt>example: your code #1
+<dd>
+<p>Users.all(:name =&gt; ‘Fake’, :age =&gt; 20)</p>
+</dd><dt>example: your code #2
+<dd>
+<p>Users.all(:age =&gt; 20)</p>
+</dd><dt>example: your code #3
+<dd>
+<p>Users.all</p>
+</dd><dt>example: what happens
+<dd>
+<p>Will return all HighlandObjects of collection or some of them according to
+the query.</p>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="all-source">
+            <pre><span class="ruby-comment"># File lib/highland/collection_methods.rb, line 65</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">all</span>(*<span class="ruby-identifier">params</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">where</span>(*<span class="ruby-identifier">params</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Hash</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">objectize</span>(<span class="ruby-ivar">@vhash</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- all-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- all-method -->
+
+    
+      <div id="method-i-build_object" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">build_object</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Objectize method helper.</p>
+          
+
+          
+          <div class="method-source-code" id="build_object-source">
+            <pre><span class="ruby-comment"># File lib/highland/collection_methods.rb, line 196</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">build_object</span>
+  <span class="ruby-constant">Object</span>.<span class="ruby-identifier">const_set</span>(<span class="ruby-string">&quot;HighlandObject&quot;</span>, <span class="ruby-constant">Class</span>.<span class="ruby-identifier">new</span>) <span class="ruby-keyword">unless</span> <span class="ruby-keyword">defined?</span>(<span class="ruby-constant">HighlandObject</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- build_object-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- build_object-method -->
+
+    
+      <div id="method-i-clear" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">clear</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>API: Clears the collection. Static and virtual hashes get empty.</p>
+<dl class="rdoc-list label-list"><dt>example: your code
+<dd>
+<p>Users.clear</p>
+</dd><dt>example: what happens
+<dd>
+<p>Now Users collection is empty.</p>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="clear-source">
+            <pre><span class="ruby-comment"># File lib/highland/collection_methods.rb, line 169</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">clear</span>
+  <span class="ruby-identifier">clear_virtual</span>
+  <span class="ruby-identifier">clear_static</span>
+  <span class="ruby-identifier">reload_virtual</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- clear-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- clear-method -->
+
+    
+      <div id="method-i-count" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">count</span><span
+            class="method-args">(*params)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>API: Define keys and it will return all elements from collection. If the
+order is not specified - it’s ascending. Look at examples of possible
+syntax.</p>
+<dl class="rdoc-list label-list"><dt>example: your code #1
+<dd>
+<p>Users.count(:name =&gt; ‘Fake’, :age =&gt; 20)</p>
+</dd><dt>example: your code #2
+<dd>
+<p>Users.count(:name =&gt; ‘Fake’)</p>
+</dd><dt>example: your code #3
+<dd>
+<p>Users.count(:age =&gt; 21)</p>
+</dd><dt>example: your code #4
+<dd>
+<p>Users.count</p>
+</dd><dt>example: what happens
+<dd>
+<p>Will return quantity of files according to the defined query.</p>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="count-source">
+            <pre><span class="ruby-comment"># File lib/highland/collection_methods.rb, line 127</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">count</span>(*<span class="ruby-identifier">params</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">find_db</span>(*<span class="ruby-identifier">params</span>).<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">length</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Hash</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-ivar">@vhash</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">length</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- count-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- count-method -->
+
+    
+      <div id="method-i-create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create</span><span
+            class="method-args">(*params)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>API: Creates new element in collection.</p>
+<dl class="rdoc-list label-list"><dt>example: your code
+<dd>
+<p>Users.create(:age =&gt; 26, :name =&gt; ‘Chris’)</p>
+</dd><dt>example: what happens
+<dd>
+<p>Creates user in Users collection.</p>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="create-source">
+            <pre><span class="ruby-comment"># File lib/highland/collection_methods.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>(*<span class="ruby-identifier">params</span>)
+  <span class="ruby-identifier">id</span> = <span class="ruby-identifier">rand</span>(<span class="ruby-value">999999999999999999</span>)     
+  <span class="ruby-identifier">rec</span> = {}
+  <span class="ruby-identifier">params</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">each_key</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">rec</span>[<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>] <span class="ruby-operator">||=</span> {}
+    <span class="ruby-identifier">rec</span>[<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>][<span class="ruby-string">&quot;type&quot;</span>] = <span class="ruby-identifier">params</span>[<span class="ruby-value">0</span>][<span class="ruby-identifier">key</span>].<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>
+    <span class="ruby-identifier">rec</span>[<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>][<span class="ruby-string">&quot;value&quot;</span>] = <span class="ruby-identifier">params</span>[<span class="ruby-value">0</span>][<span class="ruby-identifier">key</span>]
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">element</span> = {<span class="ruby-identifier">id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">rec</span>}
+  <span class="ruby-identifier">insert_vhash</span>(<span class="ruby-identifier">element</span>)
+  <span class="ruby-identifier">insert_vhelper</span>(<span class="ruby-identifier">element</span>)
+  <span class="ruby-identifier">insert_shash</span>(<span class="ruby-identifier">element</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">element</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- create-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- create-method -->
+
+    
+      <div id="method-i-distinct" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">distinct</span><span
+            class="method-args">(column)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>API: Allows to get all values of a specified key inside collection. It’s a
+good way to get all ids as well.</p>
+<dl class="rdoc-list label-list"><dt>example: your code #1
+<dd>
+<p>Users.distinct(:name)</p>
+</dd><dt>example: your code #2
+<dd>
+<p>Users.distinct(:id)</p>
+</dd><dt>example: what happens
+<dd>
+<p>Will return all values of a specified key.</p>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="distinct-source">
+            <pre><span class="ruby-comment"># File lib/highland/collection_methods.rb, line 144</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">distinct</span>(<span class="ruby-identifier">column</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-ivar">@vhelper</span>[<span class="ruby-identifier">column</span>.<span class="ruby-identifier">to_s</span>].<span class="ruby-identifier">keys</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">!=</span> <span class="ruby-string">&quot;id&quot;</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-ivar">@vhash</span>.<span class="ruby-identifier">keys</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;id&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- distinct-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- distinct-method -->
+
+    
+      <div id="method-i-find" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find</span><span
+            class="method-args">(*params)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>API: Allows you to find elements in collection. It’s more powerful than
+“where” if you want to find several elements by id or by other keys.</p>
+<dl class="rdoc-list label-list"><dt>example: your code #1
+<dd>
+<p><a href="http://id,id,...,id">Users.find(</a>)</p>
+</dd><dt>example: your code #2
+<dd>
+<p>Users.find(:age =&gt; [20,21,22])</p>
+</dd><dt>example: your code #3
+<dd>
+<p>Users.find(:age =&gt; [28])</p>
+</dd><dt>example: your code #4
+<dd>
+<p>Users.find(:age =&gt; 20)</p>
+</dd><dt>example: what happens
+<dd>
+<p>Will return HighlandObjects according to the query.</p>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="find-source">
+            <pre><span class="ruby-comment"># File lib/highland/collection_methods.rb, line 79</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">find</span>(*<span class="ruby-identifier">params</span>)
+  <span class="ruby-identifier">output</span> = []
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Hash</span>
+    <span class="ruby-identifier">params</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">each_key</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
+      [<span class="ruby-identifier">params</span>[<span class="ruby-value">0</span>][<span class="ruby-identifier">key</span>]].<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">el</span><span class="ruby-operator">|</span> <span class="ruby-identifier">output</span> = <span class="ruby-identifier">output</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">all</span>(<span class="ruby-identifier">key</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">el</span>)}
+    <span class="ruby-keyword">end</span>          
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">params</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">id</span><span class="ruby-operator">|</span> <span class="ruby-identifier">output</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">where</span>(<span class="ruby-identifier">id</span>)}
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">output</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- find-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- find-method -->
+
+    
+      <div id="method-i-first" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">first</span><span
+            class="method-args">(*params)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>API: Returns the first element according to the query.</p>
+<dl class="rdoc-list label-list"><dt>example: your code #1
+<dd>
+<p>Users.first(:name =&gt; ‘Bill’, :age =&gt; 80)</p>
+</dd><dt>example: your code #2
+<dd>
+<p>Users.first(:age =&gt; 80)</p>
+</dd><dt>example: what happens
+<dd>
+<p>Will return the first <a href="../HighlandObject.html">HighlandObject</a>,
+which fits the query constraints.</p>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="first-source">
+            <pre><span class="ruby-comment"># File lib/highland/collection_methods.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">first</span>(*<span class="ruby-identifier">params</span>)
+  <span class="ruby-identifier">where</span>(*<span class="ruby-identifier">params</span>).<span class="ruby-identifier">first</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- first-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- first-method -->
+
+    
+      <div id="method-i-init_collection" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">init_collection</span><span
+            class="method-args">(collection)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Initializes collection (loads virtual hash and helper).</p>
+          
+
+          
+          <div class="method-source-code" id="init_collection-source">
+            <pre><span class="ruby-comment"># File lib/highland/collection_methods.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">init_collection</span>(<span class="ruby-identifier">collection</span>)
+  <span class="ruby-identifier">init_file</span>(<span class="ruby-identifier">collection</span>)
+  <span class="ruby-identifier">load_vhash</span>(<span class="ruby-ivar">@file</span>)
+  <span class="ruby-identifier">load_vhelper</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- init_collection-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- init_collection-method -->
+
+    
+      <div id="method-i-objectize" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">objectize</span><span
+            class="method-args">(hash)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>It’s one of core methods, which works as a factory for HighlandObjects.</p>
+          
+
+          
+          <div class="method-source-code" id="objectize-source">
+            <pre><span class="ruby-comment"># File lib/highland/collection_methods.rb, line 177</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">objectize</span>(<span class="ruby-identifier">hash</span>)
+  <span class="ruby-identifier">output</span> = []      
+  <span class="ruby-identifier">build_object</span>
+  <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">each_key</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">id</span><span class="ruby-operator">|</span>        
+    <span class="ruby-identifier">o</span> = <span class="ruby-constant">HighlandObject</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">o</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-value">:@id</span>, <span class="ruby-identifier">id</span>)        
+    <span class="ruby-identifier">o</span>.<span class="ruby-identifier">singleton_class</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:define_method</span>, <span class="ruby-value">:id</span>) { <span class="ruby-ivar">@id</span> }        
+    <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">id</span>].<span class="ruby-identifier">each_key</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">instance</span> = <span class="ruby-node">&quot;@#{key}&quot;</span>
+      <span class="ruby-identifier">o</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">to_sym</span>, <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">id</span>][<span class="ruby-identifier">key</span>][<span class="ruby-string">&quot;value&quot;</span>])                  
+      <span class="ruby-identifier">o</span>.<span class="ruby-identifier">singleton_class</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:define_method</span>, <span class="ruby-identifier">key</span>) { <span class="ruby-identifier">eval</span>(<span class="ruby-identifier">instance</span>) }          
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">o</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">output</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- objectize-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- objectize-method -->
+
+    
+      <div id="method-i-remove" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">remove</span><span
+            class="method-args">(*params)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>API: Removes the element of collection.</p>
+<dl class="rdoc-list label-list"><dt>example: your code
+<dd>
+<p>Users.remove(:age =&gt; 25, :name =&gt; “Bob”)</p>
+</dd><dt>example: what happens
+<dd>
+<p>Removes the element from table according to the query.</p>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="remove-source">
+            <pre><span class="ruby-comment"># File lib/highland/collection_methods.rb, line 161</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">remove</span>(*<span class="ruby-identifier">params</span>)
+  <span class="ruby-identifier">delete</span>(*<span class="ruby-identifier">params</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- remove-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- remove-method -->
+
+    
+      <div id="method-i-size" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">size</span><span
+            class="method-args">(*params)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>API: is a synonim for “count”.</p>
+          
+
+          
+          <div class="method-source-code" id="size-source">
+            <pre><span class="ruby-comment"># File lib/highland/collection_methods.rb, line 134</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">size</span>(*<span class="ruby-identifier">params</span>)
+  <span class="ruby-identifier">count</span>(*<span class="ruby-identifier">params</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- size-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- size-method -->
+
+    
+      <div id="method-i-sort" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sort</span><span
+            class="method-args">(*params)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>API: Define the key and it will return all elements from collection. If the
+order is not specified - it’s ascending. Look at examples of possible
+syntax.</p>
+<dl class="rdoc-list label-list"><dt>example: your code #1
+<dd>
+<p>Users.sort(:age)</p>
+</dd><dt>example: your code #2
+<dd>
+<p>Users.sort(:age =&gt; “asc”)</p>
+</dd><dt>example: your code #3
+<dd>
+<p>Users.sort(:age =&gt; “desc”)</p>
+</dd><dt>example: what happens
+<dd>
+<p>Will return HighlandObjects according to the defined order.</p>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="sort-source">
+            <pre><span class="ruby-comment"># File lib/highland/collection_methods.rb, line 100</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">sort</span>(*<span class="ruby-identifier">params</span>)
+  <span class="ruby-identifier">column</span> = (<span class="ruby-identifier">params</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Hash</span>)<span class="ruby-operator">?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">first</span>)<span class="ruby-operator">:</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">0</span>])
+  <span class="ruby-identifier">sorted</span> = <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Hash</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">0</span>][<span class="ruby-identifier">column</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;desc&quot;</span>
+    <span class="ruby-identifier">distinct</span>(<span class="ruby-identifier">column</span>).<span class="ruby-identifier">sort</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">x</span>,<span class="ruby-identifier">y</span><span class="ruby-operator">|</span> <span class="ruby-identifier">y</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">x</span>}
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">distinct</span>(<span class="ruby-identifier">column</span>).<span class="ruby-identifier">sort</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">output</span> = []
+  <span class="ruby-identifier">sorted</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@vhelper</span>[<span class="ruby-identifier">column</span>.<span class="ruby-identifier">to_s</span>][<span class="ruby-identifier">s</span>].<span class="ruby-identifier">each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">id</span><span class="ruby-operator">|</span> <span class="ruby-identifier">output</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">find</span>(<span class="ruby-identifier">id</span>)}}
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">output</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- sort-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- sort-method -->
+
+    
+      <div id="method-i-update" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update</span><span
+            class="method-args">(*params)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>API: Updates the element of collection.</p>
+<dl class="rdoc-list label-list"><dt>example: your code
+<dd>
+<p>Users.update(:id =&gt; some_id,:age =&gt; 40, :name =&gt; “Kate”)</p>
+</dd><dt>example: what happens
+<dd>
+<p>Will update relative values for element with id equal “some_id”.</p>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="update-source">
+            <pre><span class="ruby-comment"># File lib/highland/collection_methods.rb, line 153</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>(*<span class="ruby-identifier">params</span>)
+  <span class="ruby-identifier">update_db</span>(*<span class="ruby-identifier">params</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- update-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- update-method -->
+
+    
+      <div id="method-i-where" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">where</span><span
+            class="method-args">(*params)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>API: Returns array of elements according to the query.</p>
+<dl class="rdoc-list label-list"><dt>example: your code #1
+<dd>
+<p>Users.where(:name =&gt; ‘Helen’, :age =&gt; 20)</p>
+</dd><dt>example: your code #2
+<dd>
+<p>Users.where(:age =&gt; 20)</p>
+</dd><dt>example: what happens
+<dd>
+<p>Will return Array of HighlandObjects, which fit the query constraints.</p>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="where-source">
+            <pre><span class="ruby-comment"># File lib/highland/collection_methods.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">where</span>(*<span class="ruby-identifier">params</span>)
+  <span class="ruby-identifier">hash</span> = <span class="ruby-identifier">find_db</span>(*<span class="ruby-identifier">params</span>)
+  <span class="ruby-identifier">output</span> = <span class="ruby-identifier">objectize</span>(<span class="ruby-identifier">hash</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">output</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- where-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- where-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

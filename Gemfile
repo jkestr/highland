@@ -7,3 +7,4 @@ end
 
 gem 'rio'
 gem 'gli'
+gem 'rdoc'

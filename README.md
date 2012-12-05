@@ -3,34 +3,61 @@
 [![Build Status](https://secure.travis-ci.org/mac-r/highland.png)](https://travis-ci.org/mac-r/highland)
 [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/mac-r/highland)
 
+#### Requirements:
+ ruby 1.9.3
+
 ### Overview:
 
 HighlandDB is a lightweight NoSQL database for custom Ruby based applications. It creates the database in the application directory, stores data in special highland files and utilizes assymptotically efficient algorythms for working with existing data.
 
 #### HighlandDB and Your Application:
 
-You've got some Rack or other application (ex. Sinatra, Rails, Ajaila). Install HighlandDB as a gem. Initialize DB in the root folder and have fun, don't forget to adjust access features or other stuff in the configuration file. You'll have highland folder in the root directory of your project (with db and tables).
-
-NB! For Ruby apps only.
-
-#### New Tables:
-* creates manifesto for particular table
-* ready to write input data in some table of db
-* writes everything in the first table with indexed rows (id as indexer)
-* creates helper tables with sorted columns, one table per sorted column
+You've got some Rack or other application (ex. Sinatra, Rails, Ajaila). Install HighlandDB as a gem. Initialize DB in the root folder and have fun. You'll have highland folder in the root directory of your project (with manifesto and collections).
 
 #### Get Data:
 
 ```yml
-# manifesto for peple table
-people: table
-name: string
-age: integer
-born: date
+collections:
+  - Users
 ```
 
 ```ruby
+
 require "highland"
-People.all # returns array of class objects
-People.all(age > 10) # returns array of objects according to criteria
+
+Users.all(:name => ‘Fake’, :age => 20)
+Users.all(:age => 20)
+Users.all
+
+Users.clear
+
+Users.count(:name => ‘Fake’, :age => 20)
+Users.count(:name => ‘Fake’)
+Users.count(:age => 21)
+Users.count
+
+Users.create(:age => 26, :name => ‘Chris’)
+
+Users.distinct(:name)
+Users.distinct(:id)
+
+Users.find([put ids here, ... , id])
+Users.find(:age => [20,21,22])
+Users.find(:age => [28])
+Users.find(:age => 20)
+
+Users.first(:name => ‘Bill’, :age => 80)
+Users.first(:age => 80)
+
+Users.remove(:age => 25, :name => “Bob”)
+
+Users.sort(:age)
+Users.sort(:age => “asc”)
+Users.sort(:age => “desc”)
+
+Users.update(:id => some_id,:age => 40, :name => “Kate”)
+
+Users.where(:name => ‘Helen’, :age => 20)
+Users.where(:age => 20)
+
 ```

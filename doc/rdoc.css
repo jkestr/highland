@@ -11,8 +11,8 @@
 * { padding: 0; margin: 0; }
 
 body {
-  background: #efefef;
-  font: 14px "Helvetica Neue", Helvetica, Tahoma, sans-serif;
+  background: white
+  font: 14px Arial;
   margin-left: 40px;
 }
 body.file-popup {
@@ -21,15 +21,14 @@ body.file-popup {
 }
 
 h1 {
-  font-size: 300%;
-  text-shadow: rgba(135,145,135,0.65) 2px 2px 3px;
-  color: #6C8C22;
+  font-size: 200%;
+  color: black;
 }
 h2,h3,h4 { margin-top: 1.5em; }
 
 :link,
 :visited {
-  color: #6C8C22;
+  color: darkgreen;
   text-decoration: none;
 }
 :link:hover,
@@ -348,7 +347,7 @@ ul.link-list .type {
 #attributes-list > dl dt {
   padding-left: 0;
   font-weight: bold;
-  font-family: Monaco, "Andale Mono";
+  font-family: Arial;
   background: inherit;
 }
 #constants-list > dl dt a,

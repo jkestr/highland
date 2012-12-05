@@ -6,8 +6,7 @@ HighlandDB is a lightweight NoSQL database for custom Ruby based applications. I
 [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/mac-r/highland)
 
 ## Learn more about Highland:
-[Installation](https://github.com/mac-r/highland/wiki/Querying)
-[Querying](https://github.com/mac-r/highland/wiki/Querying)
+[Installation](https://github.com/mac-r/highland/wiki/Querying)  |  [Querying](https://github.com/mac-r/highland/wiki/Querying)
 
 ## Requirements:
  ruby 1.9.3

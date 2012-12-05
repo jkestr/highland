@@ -50,8 +50,8 @@ command :init do |c|
     manifesto_content = "collections:\n"
     File.open("#{db_root}/manifesto.yml", 'w') {|f| f.write(manifesto_content) }
     puts "\tprepared Manifesto"
-    File.open("#{exec_root}/.root", 'w') {|f| f.write("Highland dependency!") }
-    puts "\tprepared hidden .root file"
+    File.open("#{exec_root}/root", 'w') {|f| f.write("Highland dependency!") }
+    puts "\tprepared root file"
 
   end
 end

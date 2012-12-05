@@ -9,7 +9,7 @@ describe Highland do
 
   it "should read manifesto" do
     collections = ["Dummy", "DummyUsers", "Empty"].sort
-    Highland::HighlandEnvironment.get_collections.sort.should == collections
+    Highland::Environment.get_collections.sort.should == collections
   end
 
   it "should create classes" do
@@ -22,7 +22,7 @@ describe Highland do
     static = ["Qwerty", "Asdfg", "Zxcv"]
     collections = ["Dummy", "DummyUsers", "Empty"]
     static.each{|c| File.open(DB_PATH + "db/#{c.downcase}.hl", "w")}
-    Highland::HighlandEnvironment.delete_unused(collections,static)
+    Highland::Environment.delete_unused(collections,static)
     inside = Dir[DB_PATH + "db/*.hl"].map do |file|
       File.basename(file,".hl").downcase
     end
@@ -32,7 +32,7 @@ describe Highland do
   it "should add static files for new collections" do
     static = ["Dummy", "DummyUsers", "Empty"]
     collections = ["Qwerty", "Asdfg", "Zxcv"]
-    Highland::HighlandEnvironment.create_missing(collections, static)
+    Highland::Environment.create_missing(collections, static)
     inside = Dir[DB_PATH + "db/*.hl"].map do |file|
       File.basename(file,".hl").downcase
     end

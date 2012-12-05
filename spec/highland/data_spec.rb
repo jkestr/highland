@@ -143,11 +143,11 @@ describe Highland do
   it "should clear virtual collections" do
   	@dummy_class.load_vhash(@dummy_shash)
     @dummy_class.load_vhelper
-    @dummy_class.instance_variable_get("@vhash").should_not == nil
-    @dummy_class.instance_variable_get("@vhelper").should_not == nil
+    @dummy_class.instance_variable_get("@vhash").should_not == {}
+    @dummy_class.instance_variable_get("@vhelper").should_not == {}
     @dummy_class.clear_virtual
-    @dummy_class.instance_variable_get("@vhash").should == nil
-    @dummy_class.instance_variable_get("@vhelper").should == nil
+    @dummy_class.instance_variable_get("@vhash").should == {}
+    @dummy_class.instance_variable_get("@vhelper").should == {}
   end
 
   it "should clear static collections" do

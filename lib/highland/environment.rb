@@ -1,15 +1,23 @@
 require 'yaml'
-DB_PATH = find_root() unless defined?(DB_PATH)
+
 module Highland
 
-  module HighlandEnvironment
-    self.extend Highland::HighlandEnvironment
+  module Environment
+    self.extend Highland::Environment
     @@klasses = []
     @@stringklasses = []
+    @@db_path = ""
     def load
+      @@db_path = find_root if defined?(DB_PATH) == nil
+      @@db_path = DB_PATH if defined?(DB_PATH) == "constant"
       load_collections
     end
     
+    def build(file)
+      @@db_path = find_root(expander(file)) if defined?(DB_PATH) == nil
+      load_collections
+    end
+
     def load_collections   
       collections = get_collections
       static = get_static
@@ -20,24 +28,24 @@ module Highland
     end
 
     def get_collections
-      return YAML.load_file(DB_PATH + "manifesto.yml")["collections"]
+      return YAML.load_file(@@db_path + "manifesto.yml")["collections"]
     end
 
     def get_static
-      return Dir[DB_PATH + "db/*.hl"].map do |file|
+      return Dir[@@db_path + "db/*.hl"].map do |file|
         File.basename(file,".hl").downcase
       end
     end
 
     def create_missing(collections, static)
       collections.each do |c|
-        File.open(DB_PATH + "db/#{c.downcase}.hl", "w") if static.include?(c.downcase) == false
+        File.open(@@db_path + "db/#{c.downcase}.hl", "w") if static.include?(c.downcase) == false
       end
     end
 
     def delete_unused(collections, static)
       static.each do |c|
-        File.delete(DB_PATH + "db/#{c.downcase}.hl") if collections.map(&:downcase).include?(c.downcase) == false
+        File.delete(@@db_path + "db/#{c.downcase}.hl") if collections.map(&:downcase).include?(c.downcase) == false
       end      
     end
 
@@ -57,12 +65,12 @@ module Highland
     def load_virtuals(classes)
       classes.each do |klass|
         target = klass.to_s.downcase
-        klass.init_collection(DB_PATH + "db/#{target}.hl")
+        klass.init_collection(@@db_path + "db/#{target}.hl")
       end
     end
 
     def root?(path)
-      root_objects = ["gemfile", "procfile", "readme", ".root"]  
+      root_objects = ["gemfile", "procfile", "readme", "root"]  
       current_objects = Dir[path + "/*"].map do |file|
         File.basename(file).downcase
       end
@@ -73,12 +81,16 @@ module Highland
       end
       return true if dir == "ROOT"
       return false if dir == "NOT ROOT"  
+    end
+
+    def expander(file)
+      return File.expand_path(File.dirname(file))
     end    
     
-    def find_root(path = File.expand_path(File.dirname(__FILE__)))
+    def find_root(path)
       path = File.expand_path('..', path) if root?(path) == false
       find_root(path) if root?(path) == false
-      return path + "/highland_db" if root?(path) == true
+      return path + "/highland_db/" if root?(path) == true
     end
     
   end

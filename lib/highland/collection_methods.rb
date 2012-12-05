@@ -86,6 +86,7 @@ module Highland
     def clear
       clear_virtual
       clear_static
+      reload_virtual
     end
 
     def objectize(hash)

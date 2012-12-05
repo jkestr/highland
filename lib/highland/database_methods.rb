@@ -87,7 +87,7 @@ module Highland
     end
 
     def clear_virtual
-      @vhash, @vhelper = nil, nil
+      @vhash, @vhelper = {}, {}
     end
 
     def reload_virtual

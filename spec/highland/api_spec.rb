@@ -3,7 +3,7 @@ require File.join(File.dirname(__FILE__), "/../spec_helper")
 
 describe Highland do
   before(:each) do
-    Highland::HighlandEnvironment.load
+    Highland::Environment.load
   end
   
   it "should create new classes" do

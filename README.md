@@ -21,14 +21,14 @@ Simplicity is the core feature of Highland. You can look through the workflow be
 ```
 $ gem install highland
 $ bundle install
-
 ```
+If everyrhing is green - go to the next step.
 
 #### 1) Go to the root directory and type:
 ```
 $ highland init
-
 ```
+That will generate 'highland_db' folder with 'manifesto.yml' file and 'db' directory inside.
 
 #### 2) Go to the 'highland_db' folder and edit 'manifesto.yml':
 ```yml
@@ -36,7 +36,9 @@ $ highland init
 collections:
   - Users # <= add your collections like that
 ```
-#### 3) Now you can work! Simply add 'highland' to any file:
+Now you we can work with Users collection in any way we want.
+
+#### 3) Simply add 'highland' to any file:
 ```ruby
 # some file inside your application
 require "highland"

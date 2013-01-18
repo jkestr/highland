@@ -2,11 +2,11 @@ HighlandDB is a lightweight NoSQL database for custom Ruby based applications. I
 
 ![Highland Logo](https://raw.github.com/mac-r/highland/master/logo.png)
 
-##There are several things which are really cool: 
+##There are several things which are really cool 
 You can store all data inside the directory of your Rails / Sinatra / Whatever application. Thus, you can deploy your app without any "real" database, perfect for blogs, small communities. Forget about migrations and table structures, simply write your data in a way you want.
 
 
-##I don't recommend HighlandDB: 
+###Disadvantages
 If you are planning to write more than 1k rows inside collection, after 500 rows each request gets significantly slow. Moreover, for now there are only two supported input types: string and float, I just didn't need any more.
 
 [![Build Status](https://secure.travis-ci.org/mac-r/highland.png)](https://travis-ci.org/mac-r/highland)

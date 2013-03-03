@@ -1,3 +1,5 @@
+## [Watch Highland on Vimeo Here](http://player.vimeo.com/video/55018195)
+
 HighlandDB is a lightweight NoSQL database for custom Ruby based applications. It creates the database in the application directory, stores data in special highland files and utilizes asymptotically efficient algorythms for working with existing data.
 
 ![Highland Logo](https://raw.github.com/mac-r/highland/master/logo.png)
